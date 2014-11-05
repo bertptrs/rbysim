@@ -1,0 +1,9 @@
+*.swp
+*.o
+
+# Staging directories
+bin
+deps
+
+# Executable
+simulator
