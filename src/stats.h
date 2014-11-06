@@ -5,32 +5,34 @@
 
 using namespace std;
 
-// Probably wasteful to store them as 4 ints when they fit in one.
-// Then again, this is a simulator running on a way more powerful machine.
-class IVStats {
-    public:
-        IVStats(const initializer_list<int>& l);
-        unsigned int attack;
-        unsigned int defense;
-        unsigned int speed;
-        unsigned int special;
-
-        // HP is an aggregate of the others.
-        unsigned int getHP() const;
+enum StatType {
+    STAT_ATTACK = 0,
+    STAT_DEFENSE,
+    STAT_SPEED,
+    STAT_SPECIAL,
+    STAT_HP,
+    STAT_COUNT, // Number of stats actually occuring in stats objects.
+    STAT_EVASION,
+    STAT_ACCURACY
 };
 
-class BaseStats {
+class Stats {
+    private:
+        unsigned int stats[STAT_COUNT];
     public:
-        BaseStats(const initializer_list<int>& l);
-        unsigned int attack;
-        unsigned int defense;
-        unsigned int speed;
-        unsigned int special;
-        unsigned int hp;
+        Stats(const initializer_list<unsigned int>& l);
+        virtual unsigned int getStat(const StatType& stat) const;
 };
 
-class EVStats : public BaseStats {
-    using BaseStats::BaseStats;
+typedef Stats BaseStats;
+typedef Stats EVStats;
+
+class IVStats : public Stats {
+    public:
+        using Stats::Stats;
+        
+        static const IVStats PERFECT;
+        virtual unsigned int getStat(const StatType& stat) const;
 };
 
 #endif

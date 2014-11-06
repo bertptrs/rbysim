@@ -1,51 +1,29 @@
 #include "stats.h"
 
-IVStats::IVStats(const initializer_list<int>& l)
+Stats::Stats(const initializer_list<unsigned int>& l)
 {
-    auto it = l.begin();
-    if (it != l.end()) {
-        attack = *it;
-        it++;
-    }
-    if (it != l.end()) {
-        defense = *it;
-        it++;
-    }
-    if (it != l.end()) {
-        speed = *it;
-        it++;
-    }
-    if (it != l.end()) {
-        special = *it;
+    int i = 0;
+    for (auto it = l.begin();
+            i < STAT_COUNT && it != l.end();
+            i++ && ++it) {
+        stats[i] = *it;
     }
 }
 
-unsigned int IVStats::getHP() const {
-    return ((attack & 1) << 3)
-        | ((defense & 1) << 2)
-        | ((speed & 1) << 1)
-        | (special & 1);
+unsigned int Stats::getStat(const StatType& stat) const {
+    return stats[stat];
 }
 
-BaseStats::BaseStats(const initializer_list<int>& l) {
-    auto it = l.begin();
-    if (it != l.end()) {
-        attack = *it;
-        it++;
-    }
-    if (it != l.end()) {
-        defense = *it;
-        it++;
-    }
-    if (it != l.end()) {
-        speed = *it;
-        it++;
-    }
-    if (it != l.end()) {
-        special = *it;
-        it++;
-    }
-    if (it != l.end()) {
-        hp = *it;
+const IVStats IVStats::PERFECT = {15, 15, 15, 15};
+
+unsigned int IVStats::getStat(const StatType& stat) const {
+    if (stat == STAT_HP) {
+        // Calculate the aggregate.
+        return ((Stats::getStat(STAT_ATTACK) & 1) << 3)
+            | ((Stats::getStat(STAT_DEFENSE) & 1) << 2)
+            | ((Stats::getStat(STAT_SPEED) & 1) << 1)
+            | ((Stats::getStat(STAT_SPECIAL) & 1));
+    } else {
+        return Stats::getStat(stat);
     }
 }
