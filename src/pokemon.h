@@ -4,6 +4,7 @@
 #include "stats.h"
 #include "types.h"
 #include <map>
+#include <set>
 
 using namespace std;
 
@@ -39,6 +40,7 @@ class Pokemon {
         IVStats ivs;
         unsigned int level;
         PokemonState state;
+        set<Types::Type> type;
         
         int getBuffLevel(const StatType& stat) const;
         float getBuffFactor(const StatType& stat) const;

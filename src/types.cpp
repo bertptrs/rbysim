@@ -6,19 +6,20 @@ const float Types::NORMAL_EFFECT = 1;
 const float Types::SUPER_EFECT = 2;
 const float Types::LITTLE_EFFECT = 0.5f;
 
-float Types::getEffectiveness(const Type& attack, const pair<Type, Type>& defender)
+float Types::getEffectiveness(const Type& attack, const set<Type>& defender)
 {
-    return getEffectiveness(attack, defender.first)
-        * getEffectiveness(attack, defender.second);
+    float effectiveness = 1;
+    for (auto type : defender) {
+        effectiveness *= getEffectiveness(attack, type);
+    }
+
+    return effectiveness;
 }
 
 float Types::getEffectiveness(const Type& attack, const Type& defense)
 {
     switch (attack)
     {
-        case TYPE_NULL:
-            // Used as secondary type for pure types.
-            return NORMAL_EFFECT;
         case TYPE_NORMAL:
             switch (defense) {
                 case TYPE_ROCK:

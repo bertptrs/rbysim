@@ -1,7 +1,7 @@
 #ifndef TYPES_H
 #define TYPES_H
 
-#include<utility>
+#include <set>
 
 using namespace std;
 
@@ -13,7 +13,6 @@ class Types {
         static const float LITTLE_EFFECT;
     public:
         enum Type {
-            TYPE_NULL,
             TYPE_NORMAL,
             TYPE_FIGHTING,
             TYPE_FLYING,
@@ -31,7 +30,7 @@ class Types {
             TYPE_DRAGON
         };
 
-        static float getEffectiveness(const Type& attack, const pair<Type, Type>& defender);
+        static float getEffectiveness(const Type& attack, const set<Type>& defender);
         static float getEffectiveness(const Type& attack, const Type& defense);
 };
 
