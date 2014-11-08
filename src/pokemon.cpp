@@ -72,3 +72,19 @@ float Pokemon::getBuffedStat(const StatType& stat) const {
     float finalStat = buff * getComputedStat(stat);
     return floor(max(1.0f, min(999.0f, finalStat)));
 }
+
+unsigned int Pokemon::getBaseStat(const StatType& stat) const {
+    return baseStats.getStat(stat);
+}
+
+const set<Types::Type>& Pokemon::getTypes() const {
+    return type;
+}
+
+unsigned int Pokemon::getLevel() const {
+    return level;
+}
+
+bool Pokemon::hasType(Types::Type requested) const  {
+    return type.count(requested) > 0;
+}

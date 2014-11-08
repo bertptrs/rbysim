@@ -49,6 +49,10 @@ class Pokemon {
         Pokemon(const EVStats& evs, const BaseStats& baseStats, const IVStats& ivs = IVStats::PERFECT, unsigned int level = 100);
         unsigned int getComputedStat(const StatType& stat) const;
         float getBuffedStat(const StatType& stat) const;
+        unsigned int getBaseStat(const StatType& stat) const;
+        bool hasType(Types::Type type) const;
+        const set<Types::Type>& getTypes() const;
+        unsigned int getLevel() const;
 };
 
 #endif
