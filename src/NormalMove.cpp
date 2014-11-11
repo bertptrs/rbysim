@@ -104,7 +104,7 @@ unsigned int NormalMove::calculateDamage(const Pokemon& attacker, const Pokemon&
     }
 
     // Simultaneous reduction
-    if (offensive > 0xff && defensive > 0xff) {
+    if (offensive > 0xff || defensive > 0xff) {
         offensive /= 4;
         defensive /= 4;
     }
