@@ -1,9 +1,11 @@
 #include "move.h"
+#include "pokemon.h"
 #include <cstdlib>
 #include <algorithm>
 
 const string Move::DEFAULT_NAME = "CUSTOM";
 const unsigned char Move::MAX_ACCURACY = 0xff;
+const shared_ptr<Move> Move::STRUGGLE(new RecoilMove(Types::Type::TYPE_NORMAL, 50, 2, Move::MAX_ACCURACY, "Struggle"));
 
 Move::Move(const Types::Type& type, unsigned char accuracy, const string& name) :
     name(name), type(type), accuracy(accuracy)

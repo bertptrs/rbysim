@@ -1,4 +1,6 @@
 #include "move.h"
+#include "pokemon.h"
+#include <iostream>
 
 NormalMove::NormalMove(const Types::Type& type, unsigned int power, bool highCrit, unsigned char accuracy, const string& name) :
     Move(type, accuracy, name),
@@ -42,7 +44,7 @@ bool NormalMove::isCrit(const Pokemon& attacker) const {
     int r = rand() % 0xff;
     int s = attacker.getBaseStat(STAT_SPEED);
 
-    return min(m * (s / 2), 255) < r;
+    return min(m * (s / 2), 255) > r;
 }
 
 Move::Result NormalMove::move(const Pokemon& attacker, const Pokemon& defender) const {

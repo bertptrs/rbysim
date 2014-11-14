@@ -3,6 +3,7 @@
 
 #include <initializer_list>
 #include "enums.h"
+#include <string>
 
 using namespace std;
 
@@ -12,7 +13,9 @@ class Stats {
     public:
         static const Stats PERFECT_EVS;
         Stats(const initializer_list<unsigned int>& l);
+        static string getName(const StatType& stat);
         virtual unsigned int getStat(const StatType& stat) const;
+
 };
 
 typedef Stats BaseStats;

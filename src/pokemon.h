@@ -1,12 +1,11 @@
 #ifndef POKEMON_H
 #define POKEMON_H
 
-#include "stats.h"
-#include "types.h"
 #include <map>
 #include <set>
 #include <memory>
-#include "move.h"
+#include "stats.h"
+#include "types.h"
 
 using namespace std;
 
@@ -27,11 +26,14 @@ class PokemonState {
         bool flinched;
         bool reflect;
         bool lightScreen;
+        map<shared_ptr<Move>, int> pp;
+        int hp;
 
         bool hasStatus() const;
 };
 
 class Pokemon {
+    friend class Battle;
     private:
         EVStats evs;
         BaseStats baseStats;
@@ -39,6 +41,8 @@ class Pokemon {
         unsigned int level;
         PokemonState state;
         set<Types::Type> type;
+        set<shared_ptr<Move>> moves;
+        string name;
         
         int getBuffLevel(const StatType& stat) const;
         float getBuffFactor(const StatType& stat) const;
@@ -52,6 +56,12 @@ class Pokemon {
         const set<Types::Type>& getTypes() const;
         unsigned int getLevel() const;
         bool hasBarrier(bool physical) const;
+
+        void addType(const Types::Type& type);
+        string getName() const;
+        void setName(const string& name);
+
+        int getHP() const;
 };
 
 #endif

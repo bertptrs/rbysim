@@ -1,3 +1,4 @@
+#include "move.h"
 #include "pokemon.h"
 #include <cmath>
 #include <algorithm>
@@ -24,7 +25,8 @@ Pokemon::Pokemon(const BaseStats& baseStats, const EVStats& evs, const IVStats& 
     evs(evs),
     baseStats(baseStats),
     ivs(ivs),
-    level(level)
+    level(level),
+    name("NO NAME")
 {
 }
 
@@ -92,4 +94,20 @@ bool Pokemon::hasType(Types::Type requested) const  {
 
 bool Pokemon::hasBarrier(bool physical) const {
     return physical ? state.reflect : state.lightScreen;
+}
+
+void Pokemon::addType(const Types::Type& newType) {
+    type.insert(newType);
+}
+
+void Pokemon::setName(const string& newName) {
+    name = newName;
+}
+
+string Pokemon::getName() const {
+    return name;
+}
+
+int Pokemon::getHP() const {
+    return state.hp;
 }
