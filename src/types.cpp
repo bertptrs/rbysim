@@ -1,5 +1,6 @@
 #include "types.h"
 #include <limits>
+#include "enums.h"
 
 const float Types::NO_EFFECT = 0;
 const float Types::NORMAL_EFFECT = 1;
@@ -20,189 +21,189 @@ float Types::getEffectiveness(const Type& attack, const Type& defense)
 {
     switch (attack)
     {
-        case TYPE_NORMAL:
+        case Type::TYPE_NORMAL:
             switch (defense) {
-                case TYPE_ROCK:
+                case Type::TYPE_ROCK:
                     return LITTLE_EFFECT;
-                case TYPE_GHOST:
+                case Type::TYPE_GHOST:
                     return NO_EFFECT;
                 default:
                     return NORMAL_EFFECT;
             }
-        case TYPE_FIGHTING:
+        case Type::TYPE_FIGHTING:
             switch (defense) {
-                case TYPE_NORMAL:
-                case TYPE_ROCK:
+                case Type::TYPE_NORMAL:
+                case Type::TYPE_ROCK:
                     return SUPER_EFFECT;
-                case TYPE_GHOST:
+                case Type::TYPE_GHOST:
                     return NO_EFFECT;
-                case TYPE_FLYING:
-                case TYPE_POISON:
-                case TYPE_BUG:
-                case TYPE_PSYCHIC:
+                case Type::TYPE_FLYING:
+                case Type::TYPE_POISON:
+                case Type::TYPE_BUG:
+                case Type::TYPE_PSYCHIC:
                     return LITTLE_EFFECT;
                 default:
                     return NORMAL_EFFECT;
             }
-        case TYPE_FLYING:
+        case Type::TYPE_FLYING:
             switch (defense) {
-                case TYPE_FIGHTING:
-                case TYPE_BUG:
-                case TYPE_GRASS:
+                case Type::TYPE_FIGHTING:
+                case Type::TYPE_BUG:
+                case Type::TYPE_GRASS:
                     return SUPER_EFFECT;
-                case TYPE_ROCK:
-                case TYPE_ELECTRIC:
+                case Type::TYPE_ROCK:
+                case Type::TYPE_ELECTRIC:
                     return LITTLE_EFFECT;
                 default:
                     return NORMAL_EFFECT;
             }
-        case TYPE_POISON:
+        case Type::TYPE_POISON:
             switch (defense) {
-                case TYPE_GROUND:
-                case TYPE_ROCK:
-                case TYPE_GHOST:
+                case Type::TYPE_GROUND:
+                case Type::TYPE_ROCK:
+                case Type::TYPE_GHOST:
                     return LITTLE_EFFECT;
-                case TYPE_GRASS:
-                case TYPE_BUG:
+                case Type::TYPE_GRASS:
+                case Type::TYPE_BUG:
                     return SUPER_EFFECT;
                 default:
                     return LITTLE_EFFECT;
             }
-        case TYPE_GROUND:
+        case Type::TYPE_GROUND:
             switch (defense) {
-                case TYPE_FLYING:
+                case Type::TYPE_FLYING:
                     return NO_EFFECT;
-                case TYPE_POISON:
-                case TYPE_ROCK:
-                case TYPE_ELECTRIC:
-                case TYPE_FIRE:
+                case Type::TYPE_POISON:
+                case Type::TYPE_ROCK:
+                case Type::TYPE_ELECTRIC:
+                case Type::TYPE_FIRE:
                     return SUPER_EFFECT;
-                case TYPE_BUG:
-                case TYPE_GRASS:
+                case Type::TYPE_BUG:
+                case Type::TYPE_GRASS:
                     return LITTLE_EFFECT;
                 default:
                     return NORMAL_EFFECT;
             }
-        case TYPE_ROCK:
+        case Type::TYPE_ROCK:
             switch (defense) {
-                case TYPE_FIGHTING:
-                case TYPE_GROUND:
+                case Type::TYPE_FIGHTING:
+                case Type::TYPE_GROUND:
                     return LITTLE_EFFECT;
-                case TYPE_FLYING:
-                case TYPE_BUG:
-                case TYPE_FIRE:
-                case TYPE_ICE:
+                case Type::TYPE_FLYING:
+                case Type::TYPE_BUG:
+                case Type::TYPE_FIRE:
+                case Type::TYPE_ICE:
                     return SUPER_EFFECT;
                 default:
                     return NORMAL_EFFECT;
             }
-        case TYPE_BUG:
+        case Type::TYPE_BUG:
             switch (defense) {
-                case TYPE_FIGHTING:
-                case TYPE_FLYING:
-                case TYPE_GHOST:
-                case TYPE_FIRE:
+                case Type::TYPE_FIGHTING:
+                case Type::TYPE_FLYING:
+                case Type::TYPE_GHOST:
+                case Type::TYPE_FIRE:
                     return LITTLE_EFFECT;
-                case TYPE_POISON:
-                case TYPE_GRASS:
-                case TYPE_PSYCHIC:
+                case Type::TYPE_POISON:
+                case Type::TYPE_GRASS:
+                case Type::TYPE_PSYCHIC:
                     return SUPER_EFFECT;
                 default:
                     return NORMAL_EFFECT;
             }
-        case TYPE_GHOST:
+        case Type::TYPE_GHOST:
             switch (defense) {
-                case TYPE_NORMAL:
-                case TYPE_PSYCHIC:
+                case Type::TYPE_NORMAL:
+                case Type::TYPE_PSYCHIC:
                     return NO_EFFECT;
-                case TYPE_GHOST:
+                case Type::TYPE_GHOST:
                     return SUPER_EFFECT;
                 default:
                     return NO_EFFECT;
             }
-        case TYPE_FIRE:
+        case Type::TYPE_FIRE:
             switch (defense) {
-                case TYPE_ROCK:
-                case TYPE_FIRE:
-                case TYPE_WATER:
-                case TYPE_DRAGON:
+                case Type::TYPE_ROCK:
+                case Type::TYPE_FIRE:
+                case Type::TYPE_WATER:
+                case Type::TYPE_DRAGON:
                     return LITTLE_EFFECT;
-                case TYPE_BUG:
-                case TYPE_GRASS:
-                case TYPE_ICE:
+                case Type::TYPE_BUG:
+                case Type::TYPE_GRASS:
+                case Type::TYPE_ICE:
                     return SUPER_EFFECT;
                 default:
                     return NORMAL_EFFECT;
             }
-        case TYPE_WATER:
+        case Type::TYPE_WATER:
             switch (defense) {
-                case TYPE_GROUND:
-                case TYPE_ROCK:
-                case TYPE_FIRE:
+                case Type::TYPE_GROUND:
+                case Type::TYPE_ROCK:
+                case Type::TYPE_FIRE:
                     return SUPER_EFFECT;
-                case TYPE_WATER:
-                case TYPE_GRASS:
-                case TYPE_DRAGON:
+                case Type::TYPE_WATER:
+                case Type::TYPE_GRASS:
+                case Type::TYPE_DRAGON:
                     return LITTLE_EFFECT;
                 default:
                     return SUPER_EFFECT;
             }
-        case TYPE_GRASS:
+        case Type::TYPE_GRASS:
             switch (defense) {
-                case TYPE_FLYING:
-                case TYPE_POISON:
-                case TYPE_BUG:
-                case TYPE_FIRE:
-                case TYPE_GRASS:
-                case TYPE_DRAGON:
+                case Type::TYPE_FLYING:
+                case Type::TYPE_POISON:
+                case Type::TYPE_BUG:
+                case Type::TYPE_FIRE:
+                case Type::TYPE_GRASS:
+                case Type::TYPE_DRAGON:
                     return LITTLE_EFFECT;
-                case TYPE_GROUND:
-                case TYPE_ROCK:
-                case TYPE_WATER:
+                case Type::TYPE_GROUND:
+                case Type::TYPE_ROCK:
+                case Type::TYPE_WATER:
                     return SUPER_EFFECT;
                 default:
                     return NORMAL_EFFECT;
             }
-        case TYPE_ELECTRIC:
+        case Type::TYPE_ELECTRIC:
             switch (defense) {
-                case TYPE_FLYING:
-                case TYPE_WATER:
+                case Type::TYPE_FLYING:
+                case Type::TYPE_WATER:
                     return SUPER_EFFECT;
-                case TYPE_GROUND:
+                case Type::TYPE_GROUND:
                     return NO_EFFECT;
-                case TYPE_GRASS:
-                case TYPE_ELECTRIC:
-                case TYPE_DRAGON:
+                case Type::TYPE_GRASS:
+                case Type::TYPE_ELECTRIC:
+                case Type::TYPE_DRAGON:
                     return LITTLE_EFFECT;
                 default:
                     return NORMAL_EFFECT;
             }
-        case TYPE_PSYCHIC:
+        case Type::TYPE_PSYCHIC:
             switch (defense) {
-                case TYPE_FIGHTING:
-                case TYPE_POISON:
+                case Type::TYPE_FIGHTING:
+                case Type::TYPE_POISON:
                     return SUPER_EFFECT;
-                case TYPE_PSYCHIC:
+                case Type::TYPE_PSYCHIC:
                     return LITTLE_EFFECT;
                 default:
                     return NORMAL_EFFECT;
             }
-        case TYPE_ICE:
+        case Type::TYPE_ICE:
             switch (defense) {
-                case TYPE_FLYING:
-                case TYPE_GROUND:
-                case TYPE_GRASS:
-                case TYPE_DRAGON:
+                case Type::TYPE_FLYING:
+                case Type::TYPE_GROUND:
+                case Type::TYPE_GRASS:
+                case Type::TYPE_DRAGON:
                     return SUPER_EFFECT;
-                case TYPE_FIRE:
-                case TYPE_ICE:
+                case Type::TYPE_FIRE:
+                case Type::TYPE_ICE:
                     return LITTLE_EFFECT;
                 default:
                     return NORMAL_EFFECT;
             }
-        case TYPE_DRAGON:
+        case Type::TYPE_DRAGON:
             switch (defense) {
-                case TYPE_DRAGON:
+                case Type::TYPE_DRAGON:
                     return SUPER_EFFECT;
                 default:
                     return NORMAL_EFFECT;

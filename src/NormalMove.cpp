@@ -1,8 +1,9 @@
 #include "move.h"
 #include "pokemon.h"
 #include <iostream>
+#include "types.h"
 
-NormalMove::NormalMove(const Types::Type& type, unsigned int power, bool highCrit, unsigned char accuracy, const string& name) :
+NormalMove::NormalMove(const Type& type, unsigned int power, bool highCrit, unsigned char accuracy, const string& name) :
     Move(type, accuracy, name),
     power(power),
     probability(0),
@@ -12,7 +13,7 @@ NormalMove::NormalMove(const Types::Type& type, unsigned int power, bool highCri
 {
 }
 
-NormalMove::NormalMove(const Types::Type& type, unsigned int power, const StatusCondition& condition, unsigned int probability, unsigned char accuracy, const string& name) :
+NormalMove::NormalMove(const Type& type, unsigned int power, const StatusCondition& condition, unsigned int probability, unsigned char accuracy, const string& name) :
     Move(type, accuracy, name),
     power(power),
     probability(probability),
@@ -23,7 +24,7 @@ NormalMove::NormalMove(const Types::Type& type, unsigned int power, const Status
 {
 }
 
-NormalMove::NormalMove(const Types::Type& type, unsigned int power, const StatType& statType, int level, unsigned int probability, unsigned char accuracy, const string& name):
+NormalMove::NormalMove(const Type& type, unsigned int power, const StatType& statType, int level, unsigned int probability, unsigned char accuracy, const string& name):
     Move(type, accuracy, name),
     power(power),
     probability(probability),

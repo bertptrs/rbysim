@@ -3,6 +3,7 @@
 #include <cmath>
 #include <algorithm>
 #include <limits>
+#include "enums.h"
 
 PokemonState::PokemonState() :
     status(StatusCondition::STATUS_NORMAL),
@@ -80,7 +81,7 @@ unsigned int Pokemon::getBaseStat(const StatType& stat) const {
     return baseStats.getStat(stat);
 }
 
-const set<Types::Type>& Pokemon::getTypes() const {
+const set<Type>& Pokemon::getTypes() const {
     return type;
 }
 
@@ -88,7 +89,7 @@ unsigned int Pokemon::getLevel() const {
     return level;
 }
 
-bool Pokemon::hasType(Types::Type requested) const  {
+bool Pokemon::hasType(Type requested) const  {
     return type.count(requested) > 0;
 }
 
@@ -96,7 +97,7 @@ bool Pokemon::hasBarrier(bool physical) const {
     return physical ? state.reflect : state.lightScreen;
 }
 
-void Pokemon::addType(const Types::Type& newType) {
+void Pokemon::addType(const Type& newType) {
     type.insert(newType);
 }
 

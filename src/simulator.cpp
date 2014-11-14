@@ -20,8 +20,8 @@ int main() {
     shared_ptr<Strategy> s1 = make_shared<Strategy>();
     shared_ptr<Strategy> s2 = make_shared<Strategy>();
 
-    p1->addType(Types::Type::TYPE_PSYCHIC);
-    p2->addType(Types::Type::TYPE_PSYCHIC);
+    p1->addType(Type::TYPE_PSYCHIC);
+    p2->addType(Type::TYPE_PSYCHIC);
 
     Battle battle(p1, s1, p2, s2);
     battle.doBattle(cout);

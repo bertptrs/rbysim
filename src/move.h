@@ -2,18 +2,18 @@
 #define MOVE_H
 
 #include "stats.h"
-#include "types.h"
 #include <memory>
 
 using namespace std;
 
 class Pokemon;
+enum class Type;
 
 class Move {
     private:
         string name;
     protected:
-        Types::Type type;
+        Type type;
         unsigned char accuracy;
         bool hit(const Pokemon& attacker, const Pokemon& defender) const;
         bool isSpecial() const;
@@ -45,7 +45,7 @@ class Move {
             };
         };
 
-        Move(const Types::Type& type, unsigned char accuracy = MAX_ACCURACY, const string& name = DEFAULT_NAME);
+        Move(const Type& type, unsigned char accuracy = MAX_ACCURACY, const string& name = DEFAULT_NAME);
 
         virtual Result move(const Pokemon& attacker, const Pokemon& defender) const = 0;
         const string& getName() const;
@@ -71,9 +71,9 @@ class NormalMove : public Move {
         unsigned int calculateDamage(const Pokemon& attacker, const Pokemon& defender, Result& moveResult) const;
 
     public:
-        NormalMove(const Types::Type& type, unsigned int power, bool highCrit = false, unsigned char accuracy = MAX_ACCURACY, const string& name = DEFAULT_NAME);
-        NormalMove(const Types::Type& type, unsigned int power, const StatusCondition& condition, unsigned int probability, unsigned char accuracy = MAX_ACCURACY, const string& name = DEFAULT_NAME);
-        NormalMove(const Types::Type& type, unsigned int power, const StatType& stat, int level, unsigned int probability, unsigned char accuracy = MAX_ACCURACY, const string& name = DEFAULT_NAME);
+        NormalMove(const Type& type, unsigned int power, bool highCrit = false, unsigned char accuracy = MAX_ACCURACY, const string& name = DEFAULT_NAME);
+        NormalMove(const Type& type, unsigned int power, const StatusCondition& condition, unsigned int probability, unsigned char accuracy = MAX_ACCURACY, const string& name = DEFAULT_NAME);
+        NormalMove(const Type& type, unsigned int power, const StatType& stat, int level, unsigned int probability, unsigned char accuracy = MAX_ACCURACY, const string& name = DEFAULT_NAME);
 
         virtual Result move(const Pokemon& attacker, const Pokemon& defender) const;
 };
@@ -82,7 +82,7 @@ class RecoilMove : public NormalMove {
     private:
         int fraction;
     public:
-        RecoilMove(const Types::Type& type, unsigned int power, const unsigned int recoilFraction = 4, unsigned char accuracy = MAX_ACCURACY, const string& name = DEFAULT_NAME);
+        RecoilMove(const Type& type, unsigned int power, const unsigned int recoilFraction = 4, unsigned char accuracy = MAX_ACCURACY, const string& name = DEFAULT_NAME);
         virtual Result move(const Pokemon& attacker, const Pokemon& defender) const;
 };
 

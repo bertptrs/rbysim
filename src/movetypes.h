@@ -7,7 +7,7 @@ using namespace std;
 
 class SelfDestructMove : public NormalMove {
     public:
-        SelfDestructMove(const Types::Type& move, unsigned int power, unsigned char accuracy = MAX_ACCURACY, const string& name = DEFAULT_NAME);
+        SelfDestructMove(const Type& move, unsigned int power, unsigned char accuracy = MAX_ACCURACY, const string& name = DEFAULT_NAME);
 };
 
 #endif

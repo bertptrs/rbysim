@@ -5,11 +5,11 @@
 #include <set>
 #include <memory>
 #include "stats.h"
-#include "types.h"
 
 using namespace std;
 
 class Move;
+enum class Type;
 
 class PokemonState {
     public:
@@ -40,7 +40,7 @@ class Pokemon {
         IVStats ivs;
         unsigned int level;
         PokemonState state;
-        set<Types::Type> type;
+        set<Type> type;
         set<shared_ptr<Move>> moves;
         string name;
         
@@ -52,12 +52,12 @@ class Pokemon {
         unsigned int getComputedStat(const StatType& stat) const;
         float getBuffedStat(const StatType& stat) const;
         unsigned int getBaseStat(const StatType& stat) const;
-        bool hasType(Types::Type type) const;
-        const set<Types::Type>& getTypes() const;
+        bool hasType(Type type) const;
+        const set<Type>& getTypes() const;
         unsigned int getLevel() const;
         bool hasBarrier(bool physical) const;
 
-        void addType(const Types::Type& type);
+        void addType(const Type& type);
         string getName() const;
         void setName(const string& name);
 

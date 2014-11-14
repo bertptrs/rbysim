@@ -1,7 +1,7 @@
 #include "move.h"
 #include "pokemon.h"
 
-RecoilMove::RecoilMove(const Types::Type& type, unsigned int power, const unsigned int recoilFraction, unsigned char accuracy, const string& name) :
+RecoilMove::RecoilMove(const Type& type, unsigned int power, const unsigned int recoilFraction, unsigned char accuracy, const string& name) :
     NormalMove(type, power, false, accuracy, name),
     fraction(recoilFraction)
 {

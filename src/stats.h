@@ -12,7 +12,9 @@ class Stats {
         unsigned int stats[STAT_COUNT];
     public:
         static const Stats PERFECT_EVS;
+
         Stats(const initializer_list<unsigned int>& l);
+        Stats() = default;
         static string getName(const StatType& stat);
         virtual unsigned int getStat(const StatType& stat) const;
 

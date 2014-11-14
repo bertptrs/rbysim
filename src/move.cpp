@@ -2,12 +2,13 @@
 #include "pokemon.h"
 #include <cstdlib>
 #include <algorithm>
+#include "enums.h"
 
 const string Move::DEFAULT_NAME = "CUSTOM";
 const unsigned char Move::MAX_ACCURACY = 0xff;
-const shared_ptr<Move> Move::STRUGGLE(new RecoilMove(Types::Type::TYPE_NORMAL, 50, 2, Move::MAX_ACCURACY, "Struggle"));
+const shared_ptr<Move> Move::STRUGGLE(new RecoilMove(Type::TYPE_NORMAL, 50, 2, Move::MAX_ACCURACY, "Struggle"));
 
-Move::Move(const Types::Type& type, unsigned char accuracy, const string& name) :
+Move::Move(const Type& type, unsigned char accuracy, const string& name) :
     name(name), type(type), accuracy(accuracy)
 {
 }
@@ -25,14 +26,14 @@ const string& Move::getName() const {
 
 bool Move::isSpecial() const {
     switch (type) {
-        case Types::Type::TYPE_NORMAL:
-        case Types::Type::TYPE_FIGHTING:
-        case Types::Type::TYPE_FLYING:
-        case Types::Type::TYPE_POISON:
-        case Types::Type::TYPE_GROUND:
-        case Types::Type::TYPE_ROCK:
-        case Types::Type::TYPE_BUG:
-        case Types::Type::TYPE_GHOST:
+        case Type::TYPE_NORMAL:
+        case Type::TYPE_FIGHTING:
+        case Type::TYPE_FLYING:
+        case Type::TYPE_POISON:
+        case Type::TYPE_GROUND:
+        case Type::TYPE_ROCK:
+        case Type::TYPE_BUG:
+        case Type::TYPE_GHOST:
             return false;
         default:
             return true;
