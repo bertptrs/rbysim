@@ -29,6 +29,8 @@ class PokemonState {
         bool flinched;
         bool digging;
         bool flying;
+        int reflectDuration;
+        int lightScreenDuration;
 
         bool hasStatus() const;
 };
@@ -53,6 +55,7 @@ class Pokemon {
         bool hasType(Types::Type type) const;
         const set<Types::Type>& getTypes() const;
         unsigned int getLevel() const;
+        bool hasBarrier(bool physical) const;
 };
 
 #endif

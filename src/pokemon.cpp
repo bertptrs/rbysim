@@ -3,7 +3,6 @@
 #include <algorithm>
 #include <limits>
 
-
 PokemonState::PokemonState() :
     status(STATUS_NORMAL),
     statusCounter(0),
@@ -11,7 +10,9 @@ PokemonState::PokemonState() :
     recharging(false),
     flinched(false),
     digging(false),
-    flying(false)
+    flying(false),
+    reflectDuration(0),
+    lightScreenDuration(0)
 {
 }
 
@@ -87,4 +88,8 @@ unsigned int Pokemon::getLevel() const {
 
 bool Pokemon::hasType(Types::Type requested) const  {
     return type.count(requested) > 0;
+}
+
+bool Pokemon::hasBarrier(bool physical) const {
+    return (physical ? state.reflectDuration : state.lightScreenDuration) > 0;
 }

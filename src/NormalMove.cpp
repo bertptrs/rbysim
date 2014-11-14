@@ -99,6 +99,11 @@ unsigned int NormalMove::calculateDamage(const Pokemon& attacker, const Pokemon&
         defensive = min(999U, (unsigned int) defender.getBuffedStat(getDefensiveStat()));
     }
 
+    if (defender.hasBarrier(!isSpecial())) {
+        offensive /= 4;
+        defensive /= 2;
+    }
+
     if (selfDestruct) {
         defensive /= 2;
     }
