@@ -48,7 +48,7 @@ class Pokemon {
         float getBuffFactor(const StatType& stat) const;
 
     public:
-        Pokemon(const EVStats& evs, const BaseStats& baseStats, const IVStats& ivs = IVStats::PERFECT, unsigned int level = 100);
+        Pokemon(const BaseStats& baseStats, const EVStats& evs = Stats::PERFECT_EVS, const IVStats& ivs = IVStats::PERFECT_IVS, unsigned int level = 100);
         unsigned int getComputedStat(const StatType& stat) const;
         float getBuffedStat(const StatType& stat) const;
         unsigned int getBaseStat(const StatType& stat) const;

@@ -1,5 +1,7 @@
 #include "stats.h"
 
+const Stats Stats::PERFECT_EVS = {0xffff, 0xffff, 0xffff, 0xffff, 0xffff};
+
 Stats::Stats(const initializer_list<unsigned int>& l)
 {
     int i = 0;
@@ -14,7 +16,7 @@ unsigned int Stats::getStat(const StatType& stat) const {
     return stats[stat];
 }
 
-const IVStats IVStats::PERFECT = {15, 15, 15, 15};
+const IVStats IVStats::PERFECT_IVS = {15, 15, 15, 15};
 
 unsigned int IVStats::getStat(const StatType& stat) const {
     if (stat == STAT_HP) {

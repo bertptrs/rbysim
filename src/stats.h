@@ -20,6 +20,7 @@ class Stats {
     private:
         unsigned int stats[STAT_COUNT];
     public:
+        static const Stats PERFECT_EVS;
         Stats(const initializer_list<unsigned int>& l);
         virtual unsigned int getStat(const StatType& stat) const;
 };
@@ -31,7 +32,7 @@ class IVStats : public Stats {
     public:
         using Stats::Stats;
         
-        static const IVStats PERFECT;
+        static const IVStats PERFECT_IVS;
         virtual unsigned int getStat(const StatType& stat) const;
 };
 

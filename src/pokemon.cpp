@@ -20,7 +20,7 @@ bool PokemonState::hasStatus() const {
     return status != STATUS_NORMAL;
 }
 
-Pokemon::Pokemon(const EVStats& evs, const BaseStats& baseStats, const IVStats& ivs, unsigned int level) :
+Pokemon::Pokemon(const BaseStats& baseStats, const EVStats& evs, const IVStats& ivs, unsigned int level) :
     evs(evs),
     baseStats(baseStats),
     ivs(ivs),
