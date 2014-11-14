@@ -11,8 +11,8 @@ PokemonState::PokemonState() :
     charging(false),
     invincible(false),
     flinched(false),
-    reflectDuration(0),
-    lightScreenDuration(0)
+    reflect(false),
+    lightScreen(false)
 {
 }
 
@@ -91,5 +91,5 @@ bool Pokemon::hasType(Types::Type requested) const  {
 }
 
 bool Pokemon::hasBarrier(bool physical) const {
-    return (physical ? state.reflectDuration : state.lightScreenDuration) > 0;
+    return physical ? state.reflect : state.lightScreen;
 }

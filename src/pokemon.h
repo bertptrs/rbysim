@@ -25,8 +25,8 @@ class PokemonState {
         shared_ptr<Move> chargingMove;
         bool invincible;
         bool flinched;
-        int reflectDuration;
-        int lightScreenDuration;
+        bool reflect;
+        bool lightScreen;
 
         bool hasStatus() const;
 };
