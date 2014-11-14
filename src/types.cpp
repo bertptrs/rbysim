@@ -3,7 +3,7 @@
 
 const float Types::NO_EFFECT = 0;
 const float Types::NORMAL_EFFECT = 1;
-const float Types::SUPER_EFECT = 2;
+const float Types::SUPER_EFFECT = 2;
 const float Types::LITTLE_EFFECT = 0.5f;
 
 float Types::getEffectiveness(const Type& attack, const set<Type>& defender)
@@ -33,7 +33,7 @@ float Types::getEffectiveness(const Type& attack, const Type& defense)
             switch (defense) {
                 case TYPE_NORMAL:
                 case TYPE_ROCK:
-                    return SUPER_EFECT;
+                    return SUPER_EFFECT;
                 case TYPE_GHOST:
                     return NO_EFFECT;
                 case TYPE_FLYING:
@@ -49,7 +49,7 @@ float Types::getEffectiveness(const Type& attack, const Type& defense)
                 case TYPE_FIGHTING:
                 case TYPE_BUG:
                 case TYPE_GRASS:
-                    return SUPER_EFECT;
+                    return SUPER_EFFECT;
                 case TYPE_ROCK:
                 case TYPE_ELECTRIC:
                     return LITTLE_EFFECT;
@@ -64,7 +64,7 @@ float Types::getEffectiveness(const Type& attack, const Type& defense)
                     return LITTLE_EFFECT;
                 case TYPE_GRASS:
                 case TYPE_BUG:
-                    return SUPER_EFECT;
+                    return SUPER_EFFECT;
                 default:
                     return LITTLE_EFFECT;
             }
@@ -76,7 +76,7 @@ float Types::getEffectiveness(const Type& attack, const Type& defense)
                 case TYPE_ROCK:
                 case TYPE_ELECTRIC:
                 case TYPE_FIRE:
-                    return SUPER_EFECT;
+                    return SUPER_EFFECT;
                 case TYPE_BUG:
                 case TYPE_GRASS:
                     return LITTLE_EFFECT;
@@ -92,7 +92,7 @@ float Types::getEffectiveness(const Type& attack, const Type& defense)
                 case TYPE_BUG:
                 case TYPE_FIRE:
                 case TYPE_ICE:
-                    return SUPER_EFECT;
+                    return SUPER_EFFECT;
                 default:
                     return NORMAL_EFFECT;
             }
@@ -106,7 +106,7 @@ float Types::getEffectiveness(const Type& attack, const Type& defense)
                 case TYPE_POISON:
                 case TYPE_GRASS:
                 case TYPE_PSYCHIC:
-                    return SUPER_EFECT;
+                    return SUPER_EFFECT;
                 default:
                     return NORMAL_EFFECT;
             }
@@ -116,7 +116,7 @@ float Types::getEffectiveness(const Type& attack, const Type& defense)
                 case TYPE_PSYCHIC:
                     return NO_EFFECT;
                 case TYPE_GHOST:
-                    return SUPER_EFECT;
+                    return SUPER_EFFECT;
                 default:
                     return NO_EFFECT;
             }
@@ -130,7 +130,7 @@ float Types::getEffectiveness(const Type& attack, const Type& defense)
                 case TYPE_BUG:
                 case TYPE_GRASS:
                 case TYPE_ICE:
-                    return SUPER_EFECT;
+                    return SUPER_EFFECT;
                 default:
                     return NORMAL_EFFECT;
             }
@@ -139,13 +139,13 @@ float Types::getEffectiveness(const Type& attack, const Type& defense)
                 case TYPE_GROUND:
                 case TYPE_ROCK:
                 case TYPE_FIRE:
-                    return SUPER_EFECT;
+                    return SUPER_EFFECT;
                 case TYPE_WATER:
                 case TYPE_GRASS:
                 case TYPE_DRAGON:
                     return LITTLE_EFFECT;
                 default:
-                    return SUPER_EFECT;
+                    return SUPER_EFFECT;
             }
         case TYPE_GRASS:
             switch (defense) {
@@ -159,7 +159,7 @@ float Types::getEffectiveness(const Type& attack, const Type& defense)
                 case TYPE_GROUND:
                 case TYPE_ROCK:
                 case TYPE_WATER:
-                    return SUPER_EFECT;
+                    return SUPER_EFFECT;
                 default:
                     return NORMAL_EFFECT;
             }
@@ -167,7 +167,7 @@ float Types::getEffectiveness(const Type& attack, const Type& defense)
             switch (defense) {
                 case TYPE_FLYING:
                 case TYPE_WATER:
-                    return SUPER_EFECT;
+                    return SUPER_EFFECT;
                 case TYPE_GROUND:
                     return NO_EFFECT;
                 case TYPE_GRASS:
@@ -181,7 +181,7 @@ float Types::getEffectiveness(const Type& attack, const Type& defense)
             switch (defense) {
                 case TYPE_FIGHTING:
                 case TYPE_POISON:
-                    return SUPER_EFECT;
+                    return SUPER_EFFECT;
                 case TYPE_PSYCHIC:
                     return LITTLE_EFFECT;
                 default:
@@ -193,7 +193,7 @@ float Types::getEffectiveness(const Type& attack, const Type& defense)
                 case TYPE_GROUND:
                 case TYPE_GRASS:
                 case TYPE_DRAGON:
-                    return SUPER_EFECT;
+                    return SUPER_EFFECT;
                 case TYPE_FIRE:
                 case TYPE_ICE:
                     return LITTLE_EFFECT;
@@ -203,7 +203,7 @@ float Types::getEffectiveness(const Type& attack, const Type& defense)
         case TYPE_DRAGON:
             switch (defense) {
                 case TYPE_DRAGON:
-                    return SUPER_EFECT;
+                    return SUPER_EFFECT;
                 default:
                     return NORMAL_EFFECT;
             }

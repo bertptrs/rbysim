@@ -9,7 +9,7 @@ class Types {
     private:
         static const float NORMAL_EFFECT;
         static const float NO_EFFECT;
-        static const float SUPER_EFECT;
+        static const float SUPER_EFFECT;
         static const float LITTLE_EFFECT;
     public:
         enum Type {
