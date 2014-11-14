@@ -6,6 +6,8 @@
 
 using namespace std;
 
+class Pokemon;
+
 class Move {
     private:
         string name;

@@ -114,7 +114,6 @@ unsigned int NormalMove::calculateDamage(const Pokemon& attacker, const Pokemon&
         defensive /= 4;
     }
 
-    // TODO: light screen and reflect
     unsigned int damage = (unsigned int) (0.4 * (level % 0xff) + 2);
     damage *= power * offensive;
     damage /= defensive;

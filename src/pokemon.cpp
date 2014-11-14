@@ -4,20 +4,20 @@
 #include <limits>
 
 PokemonState::PokemonState() :
-    status(STATUS_NORMAL),
-    statusCounter(0),
+    status(StatusCondition::STATUS_NORMAL),
+    poisonCounter(1),
     confused(false),
     recharging(false),
+    charging(false),
+    invincible(false),
     flinched(false),
-    digging(false),
-    flying(false),
     reflectDuration(0),
     lightScreenDuration(0)
 {
 }
 
 bool PokemonState::hasStatus() const {
-    return status != STATUS_NORMAL;
+    return status != StatusCondition::STATUS_NORMAL;
 }
 
 Pokemon::Pokemon(const BaseStats& baseStats, const EVStats& evs, const IVStats& ivs, unsigned int level) :
@@ -64,9 +64,9 @@ float Pokemon::getBuffedStat(const StatType& stat) const {
         return buff;
     }
 
-    if (stat == STAT_SPEED && state.status == STATUS_PARALYZED) {
+    if (stat == STAT_SPEED && state.status == StatusCondition::STATUS_PARALYZED) {
         buff /= 4;
-    } else if (stat == STAT_ATTACK && state.status == STATUS_BURNED) {
+    } else if (stat == STAT_ATTACK && state.status == StatusCondition::STATUS_BURNED) {
         buff /= 2;
     }
 

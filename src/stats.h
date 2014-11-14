@@ -2,19 +2,9 @@
 #define STATS_H
 
 #include <initializer_list>
+#include "enums.h"
 
 using namespace std;
-
-enum StatType {
-    STAT_ATTACK = 0,
-    STAT_DEFENSE,
-    STAT_SPEED,
-    STAT_SPECIAL,
-    STAT_HP,
-    STAT_COUNT, // Number of stats actually occuring in stats objects.
-    STAT_EVASION,
-    STAT_ACCURACY
-};
 
 class Stats {
     private:

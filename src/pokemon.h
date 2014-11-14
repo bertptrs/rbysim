@@ -5,30 +5,26 @@
 #include "types.h"
 #include <map>
 #include <set>
+#include <memory>
+#include "move.h"
 
 using namespace std;
 
-enum StatusCondition {
-    STATUS_NORMAL,
-    STATUS_POISONED,
-    STATUS_BADLY_POISONED,
-    STATUS_ASLEEP,
-    STATUS_FROZEN,
-    STATUS_BURNED,
-    STATUS_PARALYZED
-};
+class Move;
 
 class PokemonState {
     public:
         PokemonState();
         StatusCondition status;
-        unsigned int statusCounter;
+        unsigned int poisonCounter;
+        unsigned int sleepCounter;
         map<StatType, int> buffs;
         bool confused;
         bool recharging;
+        bool charging;
+        shared_ptr<Move> chargingMove;
+        bool invincible;
         bool flinched;
-        bool digging;
-        bool flying;
         int reflectDuration;
         int lightScreenDuration;
 
