@@ -84,6 +84,11 @@ bool Battle::battleOver() const {
 }
 
 void Battle::doMove(ostream& log, shared_ptr<Pokemon> attacker, shared_ptr<Pokemon> defender, shared_ptr<Move> move) {
+    if (attacker->state.recharging) {
+        attacker->state.recharging = false;
+        log << attacker->getName() << " must recharge!" << endl;
+    }
+
     Move::Result result = move->move(*attacker, *defender);
 
     log << attacker->getName() << " used " << move->getName() << endl;
@@ -137,6 +142,9 @@ void Battle::doMove(ostream& log, shared_ptr<Pokemon> attacker, shared_ptr<Pokem
                         break;
                 }
             }
+            break;
+        case Move::MoveEffect::RECHARGE:
+            attacker->state.recharging = true;
             break;
         case Move::MoveEffect::MISS:
         case Move::MoveEffect::NONE:

@@ -29,7 +29,8 @@ class Move {
             NONE,
             STATUS,
             STATCHANGE,
-            RECOIL
+            RECOIL,
+            RECHARGE
         };
         struct Result {
             MoveEffect effect;
