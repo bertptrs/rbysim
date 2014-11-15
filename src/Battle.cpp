@@ -115,5 +115,32 @@ void Battle::doMove(ostream& log, shared_ptr<Pokemon> attacker, shared_ptr<Pokem
                 <<" changed by " << result.statChange.level
                 << endl;
             break;
+        case Move::MoveEffect::STATUS:
+            if (!defender->state.hasStatus()) {
+                switch (result.status) {
+                    case StatusCondition::STATUS_BADLY_POISONED:
+                    case StatusCondition::STATUS_POISONED:
+                        if (!defender->hasType(Type::TYPE_POISON))
+                            defender->state.status = result.status;
+                        break;
+
+                    case StatusCondition::STATUS_FROZEN:
+                        if (!defender->hasType(Type::TYPE_ICE))
+                            defender->state.status = result.status;
+                        break;
+                    case StatusCondition::STATUS_BURNED:
+                        if (!defender->hasType(Type::TYPE_FIRE))
+                            defender->state.status = result.status;
+                        break;
+                    default:
+                        defender->state.status = result.status;
+                        break;
+                }
+            }
+            break;
+        case Move::MoveEffect::MISS:
+        case Move::MoveEffect::NONE:
+            // Do nothing
+            break;
     }
 }
