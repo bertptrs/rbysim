@@ -20,8 +20,13 @@ Move::Result RecoilMove::move(const Pokemon& attacker, const Pokemon& defender) 
     if (((int) result.damage) > defender.getHP()) {
         result.damage = defender.getHP();
     }
+
     result.effect = MoveEffect::RECOIL;
-    result.recoil = max(result.damage / fraction, 1U);
+    if (result.damage != 0) {
+        result.recoil = max(result.damage / fraction, 1U);
+    } else {
+        result.effect = MoveEffect::MISS;
+    }
     return result;
 
 }
