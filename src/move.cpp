@@ -3,6 +3,7 @@
 #include <cstdlib>
 #include <algorithm>
 #include "enums.h"
+#include "movetypes.h"
 
 const string Move::DEFAULT_NAME = "CUSTOM";
 const unsigned char Move::MAX_ACCURACY = 0xff;

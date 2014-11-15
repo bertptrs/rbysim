@@ -1,3 +1,4 @@
+#include "movetypes.h"
 #include "move.h"
 #include "pokemon.h"
 

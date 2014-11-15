@@ -78,14 +78,4 @@ class NormalMove : public Move {
         virtual Result move(const Pokemon& attacker, const Pokemon& defender) const;
 };
 
-class RecoilMove : public NormalMove {
-    private:
-        int fraction;
-    public:
-        RecoilMove(const Type& type, unsigned int power, const unsigned int recoilFraction = 4, unsigned char accuracy = MAX_ACCURACY, const string& name = DEFAULT_NAME);
-        virtual Result move(const Pokemon& attacker, const Pokemon& defender) const;
-};
-
-extern shared_ptr<Move> STRUGGLE;
-
 #endif
