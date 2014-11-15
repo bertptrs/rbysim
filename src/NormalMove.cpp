@@ -87,6 +87,10 @@ unsigned int NormalMove::calculateDamage(const Pokemon& attacker, const Pokemon&
     const bool crit = isCrit(attacker);
     moveResult.crit = crit;
     float effectiveness = Types::getEffectiveness(type, defender.getTypes());
+    if (effectiveness == 0) {
+        moveResult.effect = MoveEffect::MISS;
+        return 0;
+    }
     int r = (rand() % (255 - 217 + 1)) + 217;
     unsigned int level = attacker.getLevel();
     unsigned int offensive, defensive;
@@ -128,6 +132,14 @@ unsigned int NormalMove::calculateDamage(const Pokemon& attacker, const Pokemon&
     damage *= effectiveness;
     damage *= r;
     damage /= 0xff;
+
+    // Always deal damage
+    damage = max(damage, 1U);
+
+    // Don't deal more damage than possible.
+    if (damage >= (unsigned int) defender.getHP()) {
+        damage = defender.getHP();
+    }
     moveResult.damage = damage;
 
     return damage;

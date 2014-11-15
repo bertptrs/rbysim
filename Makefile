@@ -33,4 +33,4 @@ $(DEPDIR)/%.depend: %.cpp | $(DEPDIR)
 $(DIRS):
 	mkdir -p $@
 	
-include $(DEPS)
+sinclude $(DEPS)

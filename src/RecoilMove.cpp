@@ -8,25 +8,13 @@ RecoilMove::RecoilMove(const Type& type, unsigned int power, const unsigned int 
 }
 
 Move::Result RecoilMove::move(const Pokemon& attacker, const Pokemon& defender) const {
-    Result result;
-    if (!hit(attacker, defender)) {
-        result.effect = MoveEffect::MISS;
-        return result;
-    }
-    // Calculate damage
-    calculateDamage(attacker, defender, result);
+    Result result = NormalMove::move(attacker, defender);
 
-    // Recoil based on actual damage done.
-    if (((int) result.damage) > defender.getHP()) {
-        result.damage = defender.getHP();
-    }
-
-    result.effect = MoveEffect::RECOIL;
-    if (result.damage != 0) {
+    if (result.effect != MoveEffect::MISS) {
+        result.effect = MoveEffect::RECOIL;
         result.recoil = max(result.damage / fraction, 1U);
-    } else {
-        result.effect = MoveEffect::MISS;
     }
+    
     return result;
 
 }
