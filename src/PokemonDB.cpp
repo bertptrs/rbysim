@@ -38,6 +38,10 @@ void PokemonDB::load() {
         throw "Could not read basestats db";
     }
 
+    string dump;
+    // Ignore first line.
+    getline(dbfile, dump);
+
     while (true) {
         string name;
         unsigned int hp, attack, defense, speed, special;
