@@ -31,7 +31,9 @@ enum class MoveEffect {
     RECHARGE,
     DRAIN,
     CONFUSE,
-    FLINCH
+    FLINCH,
+    SELFDESTRUCT,
+    OHKO
 };
 
 enum class Type {

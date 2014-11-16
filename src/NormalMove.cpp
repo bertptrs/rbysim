@@ -48,6 +48,12 @@ NormalMove::NormalMove(const Type& type, unsigned int power, MoveEffect effect, 
     switch (effect) {
         case MoveEffect::FLINCH:
         case MoveEffect::CONFUSE:
+        case MoveEffect::DRAIN:
+        case MoveEffect::RECHARGE:
+            break;
+
+        case MoveEffect::SELFDESTRUCT:
+            selfDestruct = true;
             break;
 
         default:
@@ -78,31 +84,44 @@ Move::Result NormalMove::move(const Pokemon& attacker, const Pokemon& defender) 
     calculateDamage(attacker, defender, result);
 
     // Handle move effects
-    if (hasEffect()) {
-        switch (moveEffect) {
-            case MoveEffect::STATUS:
+    switch (moveEffect) {
+        case MoveEffect::STATUS:
+            if (hasEffect()) {
                 result.effect = MoveEffect::STATUS;
                 result.status = condition;
-                break;
+            }
+            break;
 
-            case MoveEffect::STATCHANGE:
+        case MoveEffect::STATCHANGE:
+            if (hasEffect()) {
                 result.effect = MoveEffect::STATCHANGE;
                 result.statChange.stat = stat.stat;
                 result.statChange.level = stat.change;
-                break;
+            }
+            break;
 
-            case MoveEffect::FLINCH:
-            case MoveEffect::CONFUSE:
+        case MoveEffect::FLINCH:
+        case MoveEffect::CONFUSE:
+            if (hasEffect()) {
                 result.effect = moveEffect;
-                break;
+            }
+            break;
 
-            default:
-                result.effect = MoveEffect::NONE;
-                break;
-        }
-    } else {
-        result.effect = MoveEffect::NONE;
+        case MoveEffect::DRAIN:
+            result.effect = MoveEffect::DRAIN;
+            result.drain = max(1U, result.damage / 2);
+            break;
+
+        case MoveEffect::SELFDESTRUCT:
+        case MoveEffect::RECHARGE:
+            result.effect = moveEffect;
+            break;
+
+        default:
+            result.effect = MoveEffect::NONE;
+            break;
     }
+
     return result;
 }
 

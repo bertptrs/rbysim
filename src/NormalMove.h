@@ -28,7 +28,7 @@ class NormalMove : public Move {
         NormalMove(const Type& type, unsigned int power, unsigned char accuracy = MAX_ACCURACY, const string& name = DEFAULT_NAME);
         NormalMove(const Type& type, unsigned int power, const StatusCondition& condition, unsigned int probability, unsigned char accuracy = MAX_ACCURACY, const string& name = DEFAULT_NAME);
         NormalMove(const Type& type, unsigned int power, const StatType& stat, int level, unsigned int probability, unsigned char accuracy = MAX_ACCURACY, const string& name = DEFAULT_NAME);
-        NormalMove(const Type& type, unsigned int power, MoveEffect effect, unsigned int probability, unsigned char accuracy = MAX_ACCURACY, const string& name = DEFAULT_NAME);
+        NormalMove(const Type& type, unsigned int power, MoveEffect effect, unsigned int probability = 0, unsigned char accuracy = MAX_ACCURACY, const string& name = DEFAULT_NAME);
 
         NormalMove& withHighCrit();
 

@@ -171,6 +171,15 @@ void Battle::doMove(ostream& log, shared_ptr<Pokemon> attacker, shared_ptr<Pokem
             }
             break;
 
+        case MoveEffect::SELFDESTRUCT:
+            attacker->state.hp = 0;
+            break;
+
+        case MoveEffect::OHKO:
+            defender->state.hp = 0;
+            log << "It's a One Hit KO!" << endl;
+            break;
+
         case MoveEffect::MISS:
         case MoveEffect::NONE:
             // Do nothing

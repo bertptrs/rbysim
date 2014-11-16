@@ -44,14 +44,6 @@ class EffectMove : public Move {
 };
 
 /*!
- * A class for moves that get the self destruct defensive drop.
- */
-class SelfDestructMove : public NormalMove {
-    public:
-        SelfDestructMove(const Type& move, unsigned int power, unsigned char accuracy = MAX_ACCURACY, const string& name = DEFAULT_NAME);
-};
-
-/*!
  * A class for moves with recoil, such as Take Down
  */
 class RecoilMove : public NormalMove {
@@ -88,23 +80,12 @@ class SwiftMove : public NormalMove {
 };
 
 /*!
- * A class for the move Hyperbeam.
+ * A class for one hit KO moves, such as Fissure.
  */
-class HyperBeamMove : public NormalMove {
-    private:
-        static const unsigned int HYPERBEAM_POWER;
-
+class OHKOMove : public Move {
     public:
-        HyperBeamMove();
-        virtual Result move(const Pokemon& attacker, const Pokemon& defender) const;
-};
+        using Move::Move;
 
-/*!
- * Class for draining moves, such as leech life.
- */
-class DrainingMove : public NormalMove {
-    public:
-        DrainingMove(const Type& type, unsigned int power, unsigned char accuracy = MAX_ACCURACY, const string& name = DEFAULT_NAME);
         virtual Result move(const Pokemon& attacker, const Pokemon& defender) const;
 };
 
