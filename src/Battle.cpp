@@ -1,6 +1,7 @@
 #include "Battle.h"
 #include "pokemon.h"
 #include "move.h"
+#include "enums.h"
 #include "Strategy.h"
 
 typedef shared_ptr<Move> mptr;
@@ -93,7 +94,7 @@ void Battle::doMove(ostream& log, shared_ptr<Pokemon> attacker, shared_ptr<Pokem
 
     log << attacker->getName() << " used " << move->getName() << endl;
 
-    if (result.effect == Move::MoveEffect::MISS) {
+    if (result.effect == MoveEffect::MISS) {
         log << attacker->getName() << " missed!" << endl; 
         return;
     } else if (result.crit) {
@@ -105,12 +106,12 @@ void Battle::doMove(ostream& log, shared_ptr<Pokemon> attacker, shared_ptr<Pokem
         << result.damage << " damage" << endl;
 
     switch (result.effect) {
-        case Move::MoveEffect::RECOIL:
+        case MoveEffect::RECOIL:
             attacker->state.hp -= result.recoil;
             log << attacker->getName() << " got " 
                 << result.recoil << " recoil" << endl;
             break;
-        case Move::MoveEffect::STATCHANGE:
+        case MoveEffect::STATCHANGE:
             defender->state.buffs[result.statChange.stat] +=
                 result.statChange.level;
             defender->state.buffs[result.statChange.stat] =
@@ -120,7 +121,7 @@ void Battle::doMove(ostream& log, shared_ptr<Pokemon> attacker, shared_ptr<Pokem
                 <<" changed by " << result.statChange.level
                 << endl;
             break;
-        case Move::MoveEffect::STATUS:
+        case MoveEffect::STATUS:
             if (!defender->state.hasStatus()) {
                 switch (result.status) {
                     case StatusCondition::STATUS_BADLY_POISONED:
@@ -143,11 +144,11 @@ void Battle::doMove(ostream& log, shared_ptr<Pokemon> attacker, shared_ptr<Pokem
                 }
             }
             break;
-        case Move::MoveEffect::RECHARGE:
+        case MoveEffect::RECHARGE:
             attacker->state.recharging = true;
             break;
-        case Move::MoveEffect::MISS:
-        case Move::MoveEffect::NONE:
+        case MoveEffect::MISS:
+        case MoveEffect::NONE:
             // Do nothing
             break;
     }

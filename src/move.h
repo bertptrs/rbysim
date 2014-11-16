@@ -8,6 +8,7 @@ using namespace std;
 
 class Pokemon;
 enum class Type;
+enum class MoveEffect;
 
 class Move {
     private:
@@ -24,14 +25,7 @@ class Move {
         static const unsigned char MAX_ACCURACY;
         static const shared_ptr<Move> STRUGGLE;
 
-        enum class MoveEffect {
-            MISS,
-            NONE,
-            STATUS,
-            STATCHANGE,
-            RECOIL,
-            RECHARGE
-        };
+
         struct Result {
             MoveEffect effect;
             unsigned int damage;

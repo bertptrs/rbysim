@@ -7,7 +7,7 @@ NormalMove::NormalMove(const Type& type, unsigned int power, bool highCrit, unsi
     Move(type, accuracy, name),
     power(power),
     probability(0),
-    moveEffect(Move::MoveEffect::NONE),
+    moveEffect(MoveEffect::NONE),
     highCrit(highCrit),
     selfDestruct(false)
 {
@@ -17,7 +17,7 @@ NormalMove::NormalMove(const Type& type, unsigned int power, const StatusConditi
     Move(type, accuracy, name),
     power(power),
     probability(probability),
-    moveEffect(Move::MoveEffect::STATUS),
+    moveEffect(MoveEffect::STATUS),
     condition(condition),
     highCrit(false),
     selfDestruct(false)
@@ -28,7 +28,7 @@ NormalMove::NormalMove(const Type& type, unsigned int power, const StatType& sta
     Move(type, accuracy, name),
     power(power),
     probability(probability),
-    moveEffect(Move::MoveEffect::STATCHANGE),
+    moveEffect(MoveEffect::STATCHANGE),
     highCrit(false),
     selfDestruct(false)
 {

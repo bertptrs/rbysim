@@ -22,6 +22,15 @@ enum class StatusCondition {
     STATUS_PARALYZED
 };
 
+enum class MoveEffect {
+    MISS,
+    NONE,
+    STATUS,
+    STATCHANGE,
+    RECOIL,
+    RECHARGE
+};
+
 enum class Type {
     TYPE_NORMAL,
     TYPE_FIGHTING,
