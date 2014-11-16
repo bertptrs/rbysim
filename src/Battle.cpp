@@ -147,6 +147,30 @@ void Battle::doMove(ostream& log, shared_ptr<Pokemon> attacker, shared_ptr<Pokem
         case MoveEffect::RECHARGE:
             attacker->state.recharging = true;
             break;
+
+        case MoveEffect::FLINCH:
+            defender->state.flinched = true;
+            break;
+
+        case MoveEffect::CONFUSE:
+            if (defender->state.confused) {
+                log << defender->getName() << " is already confused." << endl;
+            } else {
+                defender->state.confused = true;
+                log << defender->getName() << " got confused!" << endl;
+            }
+            break;
+
+        case MoveEffect::DRAIN:
+            // TODO: Drain message.
+            defender->state.hp += result.drain;
+
+            // Cap on max hp.
+            if (defender->state.hp > (int) defender->getComputedStat(STAT_HP)) {
+                defender->state.hp = defender->getComputedStat(STAT_HP);
+            }
+            break;
+
         case MoveEffect::MISS:
         case MoveEffect::NONE:
             // Do nothing

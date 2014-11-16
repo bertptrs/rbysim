@@ -3,12 +3,12 @@
 #include <iostream>
 #include "types.h"
 
-NormalMove::NormalMove(const Type& type, unsigned int power, bool highCrit, unsigned char accuracy, const string& name) :
+NormalMove::NormalMove(const Type& type, unsigned int power, unsigned char accuracy, const string& name) :
     Move(type, accuracy, name),
     power(power),
     probability(0),
     moveEffect(MoveEffect::NONE),
-    highCrit(highCrit),
+    highCrit(false),
     selfDestruct(false)
 {
 }
@@ -34,6 +34,26 @@ NormalMove::NormalMove(const Type& type, unsigned int power, const StatType& sta
 {
     stat.stat = statType;
     stat.change = level;
+}
+
+
+NormalMove::NormalMove(const Type& type, unsigned int power, MoveEffect effect, unsigned int probability, unsigned char accuracy, const string& name) :
+    Move(type, accuracy, name),
+    power(power),
+    probability(probability),
+    moveEffect(effect),
+    highCrit(false),
+    selfDestruct(false)
+{
+    switch (effect) {
+        case MoveEffect::FLINCH:
+        case MoveEffect::CONFUSE:
+            break;
+
+        default:
+            throw "Wrong constructor used!";
+            break;
+    }
 }
 
 bool NormalMove::hasEffect() const {
@@ -71,9 +91,14 @@ Move::Result NormalMove::move(const Pokemon& attacker, const Pokemon& defender) 
                 result.statChange.level = stat.change;
                 break;
 
+            case MoveEffect::FLINCH:
+            case MoveEffect::CONFUSE:
+                result.effect = moveEffect;
+                break;
+
             default:
-                    result.effect = MoveEffect::NONE;
-                    break;
+                result.effect = MoveEffect::NONE;
+                break;
         }
     } else {
         result.effect = MoveEffect::NONE;

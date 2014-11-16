@@ -48,4 +48,3 @@ StatType Move::getOffensiveStat() const {
 StatType Move::getDefensiveStat() const {
     return isSpecial() ? STAT_SPECIAL : STAT_DEFENSE;
 }
-

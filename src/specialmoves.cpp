@@ -6,7 +6,7 @@ const unsigned int SwiftMove::SWIFT_POWER = 60;
 const unsigned int HyperBeamMove::HYPERBEAM_POWER = 150;
 
 HyperBeamMove::HyperBeamMove() :
-    NormalMove(Type::TYPE_NORMAL, HYPERBEAM_POWER, false, MAX_ACCURACY, "Hyperbeam")
+    NormalMove(Type::TYPE_NORMAL, HYPERBEAM_POWER, MAX_ACCURACY, "Hyperbeam")
 {
 }
 
@@ -21,7 +21,7 @@ Move::Result HyperBeamMove::move(const Pokemon& attacker, const Pokemon& defende
 }
 
 SwiftMove::SwiftMove() :
-    NormalMove(Type::TYPE_NORMAL, SWIFT_POWER, false, 0, "Swift")
+    NormalMove(Type::TYPE_NORMAL, SWIFT_POWER, 0, "Swift")
 {
 }
 

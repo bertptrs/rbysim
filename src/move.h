@@ -29,9 +29,10 @@ class Move {
         struct Result {
             MoveEffect effect;
             unsigned int damage;
-            unsigned int recoil;
             bool crit;
             union {
+                unsigned int recoil;
+                unsigned int drain;
                 struct {
                     int level;
                     StatType stat;
@@ -66,9 +67,12 @@ class NormalMove : public Move {
         unsigned int calculateDamage(const Pokemon& attacker, const Pokemon& defender, Result& moveResult) const;
 
     public:
-        NormalMove(const Type& type, unsigned int power, bool highCrit = false, unsigned char accuracy = MAX_ACCURACY, const string& name = DEFAULT_NAME);
+        NormalMove(const Type& type, unsigned int power, unsigned char accuracy = MAX_ACCURACY, const string& name = DEFAULT_NAME);
         NormalMove(const Type& type, unsigned int power, const StatusCondition& condition, unsigned int probability, unsigned char accuracy = MAX_ACCURACY, const string& name = DEFAULT_NAME);
         NormalMove(const Type& type, unsigned int power, const StatType& stat, int level, unsigned int probability, unsigned char accuracy = MAX_ACCURACY, const string& name = DEFAULT_NAME);
+        NormalMove(const Type& type, unsigned int power, MoveEffect effect, unsigned int probability, unsigned char accuracy = MAX_ACCURACY, const string& name = DEFAULT_NAME);
+
+        NormalMove& withHighCrit();
 
         virtual Result move(const Pokemon& attacker, const Pokemon& defender) const;
 };

@@ -28,7 +28,10 @@ enum class MoveEffect {
     STATUS,
     STATCHANGE,
     RECOIL,
-    RECHARGE
+    RECHARGE,
+    DRAIN,
+    CONFUSE,
+    FLINCH
 };
 
 enum class Type {
