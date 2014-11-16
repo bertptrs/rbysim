@@ -1,4 +1,4 @@
-#include "move.h"
+#include "NormalMove.h"
 #include "pokemon.h"
 #include <iostream>
 #include "types.h"

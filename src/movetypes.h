@@ -1,6 +1,7 @@
 #ifndef MOVETYPES_H
 #define MOVETYPES_H
 #include "move.h"
+#include "NormalMove.h"
 
 using namespace std;
 
