@@ -99,4 +99,13 @@ class HyperBeamMove : public NormalMove {
         virtual Result move(const Pokemon& attacker, const Pokemon& defender) const;
 };
 
+/*!
+ * Class for draining moves, such as leech life.
+ */
+class DrainingMove : public NormalMove {
+    public:
+        DrainingMove(const Type& type, unsigned int power, unsigned char accuracy = MAX_ACCURACY, const string& name = DEFAULT_NAME);
+        virtual Result move(const Pokemon& attacker, const Pokemon& defender) const;
+};
+
 #endif
