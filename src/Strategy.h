@@ -10,7 +10,7 @@ class Move;
 
 class Strategy {
     public:
-        virtual shared_ptr<Move> getMove(const Pokemon& attacker, const Pokemon& defender);
+        virtual shared_ptr<Move> getMove(const Pokemon& attacker, const Pokemon& defender) = 0;
 };
 
 #endif

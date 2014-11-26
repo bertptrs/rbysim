@@ -3,7 +3,7 @@
 
 #include "Strategy.h"
 
-class RandomStrategy {
+class RandomStrategy : public Strategy {
     public:
         virtual shared_ptr<Move> getMove(const Pokemon& attacker, const Pokemon& defender);
 };
