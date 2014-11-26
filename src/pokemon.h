@@ -60,6 +60,8 @@ class Pokemon {
         void addType(const Type& type);
         string getName() const;
         void setName(const string& name);
+        const set<shared_ptr<Move>>& getMoves() const;
+        int getPP(const shared_ptr<Move>& move) const;
 
         int getHP() const;
 };

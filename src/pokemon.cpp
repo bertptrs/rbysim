@@ -112,3 +112,16 @@ string Pokemon::getName() const {
 int Pokemon::getHP() const {
     return state.hp;
 }
+
+const set<shared_ptr<Move>>& Pokemon::getMoves() const {
+    return moves;
+}
+
+int Pokemon::getPP(const shared_ptr<Move>& move) const {
+    auto it = state.pp.find(move);
+    if (it != state.pp.end()) {
+        return max(it->second, 0);
+    } else {
+        return 0;
+    }
+}
