@@ -13,6 +13,7 @@ enum class MoveEffect;
 class Move {
     private:
         string name;
+        unsigned int pp;
     protected:
         Type type;
         unsigned char accuracy;
@@ -45,6 +46,8 @@ class Move {
 
         virtual Result move(const Pokemon& attacker, const Pokemon& defender) const = 0;
         const string& getName() const;
+        unsigned int getPP() const;
+        void setPP(unsigned int n);
 };
 
 #endif

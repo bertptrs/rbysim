@@ -48,3 +48,11 @@ StatType Move::getOffensiveStat() const {
 StatType Move::getDefensiveStat() const {
     return isSpecial() ? STAT_SPECIAL : STAT_DEFENSE;
 }
+
+void Move::setPP(unsigned int n) {
+    pp = n;
+}
+
+unsigned int Move::getPP() const {
+    return pp;
+}
