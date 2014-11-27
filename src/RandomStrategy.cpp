@@ -6,21 +6,18 @@
 
 shared_ptr<Move> RandomStrategy::getMove(const Pokemon& attacker, const Pokemon&) {
     const set<shared_ptr<Move>> moveSet = attacker.getMoves();
-    vector<shared_ptr<Move>> moves(moveSet.begin(), moveSet.end());
-    set<int> tried;
-
-    while (tried.size() < moves.size()) {
-        int index;
-        do {
-            index = rand() % moves.size();
-        } while (tried.count(index));
-
-        int pp = attacker.getPP(moves[index]);
+    vector<shared_ptr<Move>> validMoves;
+    for (auto move : moveSet) {
+        int pp = attacker.getPP(move);
         if (pp > 0) {
-            return moves[index];
-        } else {
-            tried.insert(index);
+            validMoves.push_back(move);
         }
+    }
+    if (validMoves.size() > 0) {
+        int index = rand() % validMoves.size();
+        return validMoves[index];
+    } else {
+        return shared_ptr<Move>(nullptr);
     }
 
     return shared_ptr<Move>(nullptr);
