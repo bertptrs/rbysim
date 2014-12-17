@@ -1,0 +1,94 @@
+MOVE        , TYPE         ,POWER, BASE PP,BASE ACCURACY, EFFECT                ,STAT OR AILMENT, CHANCE
+Absorb      , Grass ,20,20,255,DRAIN,,   
+Acid        , Poison ,40,30,255,STATUSCHANGE,PSN,10
+Aurora Beam , Ice ,65,20,255,STATMOD,ATK,10
+Barrage     , Normal ,15,20,217,MULTIHIT,,   
+Bind        , Normal ,15,20,191,PARTRAP,,   
+Bite        , Normal ,60,25,255,FLINCH,,10
+Blizzard    , Ice ,120,5,229,STATUSCHANGE,FRZ,10
+Body Slam   , Normal ,85,15,255,STATUSCHANGE,PAR,30
+Bone Club   , Ground ,65,20,217,FLINCH,,10
+Bonemerang  , Ground ,50,10,229,TWOHIT,,   
+Bubble      , Water ,20,30,255,STATMOD,SPD,10
+Bubblebeam  , Water ,65,20,255,STATMOD,SPD,10
+Clamp       , Water ,35,10,191,PARTRAP,,   
+Comet Punch , Normal ,18,15,217,MULTIHIT,,   
+Confusion   , Psychic ,50,25,255,CONFUSE,,10
+Constrict   , Normal ,10,35,255,STATMOD,SPD,10
+Crabhammer  , Water ,90,10,217,HIGHCRIT,,   
+Cut         , Normal ,50,30,255,,,   
+Dizzy Punch , Normal ,70,10,255,,,   
+Double-Edge , Normal ,100,10,255,RECOIL,,   
+Double Kick , Fighting ,30,30,255,TWOHIT,,   
+Doubleslap  , Normal ,15,10,217,MULTIHIT,,   
+Dream Eater , Psychic ,100,15,255,DRAIN,,
+Drill Peck  , Flying ,80,20,255,,,   
+Earthquake  , Ground ,100,10,255,,,   
+Egg Bomb    , Normal ,100,10,191,,,   
+Ember       , Fire ,40,25,255,STATUSCHANGE,BRN,10
+Explosion   , Normal ,170,5,255,SELFDESTRUCT,,   
+Fire Blast  , Fire ,120,5,217,STATUSCHANGE,BRN,30
+Fire Punch  , Fire ,75,15,255,STATUSCHANGE,BRN,10
+Fire Spin   , Fire ,15,15,178,PARTRAP,,   
+Fissure     , Ground ,,5,76,OHKO,,   
+Flamethrower, Fire ,95,15,255,STATUSCHANGE,BRN,10
+Fury Attack , Normal ,15,20,217,MULTIHIT,,   
+Fury Swipes , Normal ,18,15,217,MULTIHIT,,   
+Guillotine  , Normal ,,5,76,OHKO,,   
+Gust        , Normal ,40,35,255,,,   
+Headbutt    , Normal ,70,15,255,FLINCH,,30
+Horn Attack , Normal ,65,25,255,,,   
+Horn Drill  , Normal ,,5,76,OHKO,,   
+Hydro Pump  , Water ,120,5,204,,,   
+Hyper Fang  , Normal ,80,15,229,FLINCH,,10
+Ice Beam    , Ice ,95,10,255,STATUSCHANGE,FRZ,10
+Ice Punch   , Ice ,75,15,255,STATUSCHANGE,FRZ,10
+Karate Chop , Normal ,50,25,255,HIGHCRIT,,   
+Leech Life  , Bug ,20,15,255,DRAIN,,   
+Lick        , Ghost ,20,30,255,STATUSCHANGE,PAR,30
+Low Kick    , Fighting ,50,20,255,FLINCH,,30
+Mega Drain  , Grass ,40,10,255,DRAIN,,   
+Mega Kick   , Normal ,120,5,191,,,   
+Mega Punch  , Normal ,80,20,217,,,   
+Pay Day     , Normal ,40,20,255,,,
+Peck        , Flying ,35,35,255,,,   
+Petal Dance , Grass ,70,20,255,RECKLESS,,   
+Pin Missile , Bug ,14,20,217,MULTIHIT,,   
+Poison Sting, Poison ,15,35,255,STATUSCHANGE,PSN,20
+Pound       , Normal ,40,35,255,,,   
+Psybeam     , Psychic ,65,20,255,CONFUSE,,10
+Psychic     , Psychic ,90,10,255,STATMOD,SPC,30
+Razor Leaf  , Grass ,55,25,242,HIGHCRIT,,   
+Razor Wind  , Normal ,80,10,191,CHARGE,,   
+Rock Slide  , Rock ,75,10,229,,,   
+Rock Throw  , Rock ,50,15,229,,,   
+Rolling Kick, Fighting ,60,15,217,FLINCH,,30
+Scratch     , Normal ,40,35,255,,,   
+Selfdestruct, Normal ,130,5,255,SELFDESTRUCT,,   
+Skull Bash  , Normal ,100,15,255,CHARGE,,   
+Sky Attack  , Flying ,140,5,229,CHARGE,,   
+Slam        , Normal ,80,20,204,,,   
+Slash       , Normal ,70,20,255,HIGHCRIT,,   
+Sludge      , Poison ,65,20,255,STATUSCHANGE,PSN,30
+Smog        , Poison ,20,20,178,STATUSCHANGE,PSN,40
+Solarbeam   , Grass ,120,10,255,CHARGE,,   
+Spike Cannon, Normal ,20,15,255,MULTIHIT,,   
+Stomp       , Normal ,65,20,255,FLINCH,,30
+Strength    , Normal ,80,15,255,,,   
+Submission  , Fighting ,80,25,204,RECOIL,,   
+Surf        , Water ,95,15,255,,,   
+Tackle      , Normal ,35,35,242,,,   
+Take Down   , Normal ,90,20,217,RECOIL,,   
+Thrash      , Normal ,90,20,255,CONFUSE,,   
+Thunder     , Electric ,120,10,178,STATUSCHANGE,PAR,10
+Thunderbolt , Electric ,95,15,255,STATUSCHANGE,PAR,10
+Thunderpunch, Electric ,75,15,255,STATUSCHANGE,PAR,10
+Thundershock, Electric ,40,30,255,STATUSCHANGE,PAR,10
+Tri Attack  , Normal ,80,10,255,,,   
+Twineedle   , Bug ,25,20,255,TWOHIT,,20
+Vicegrip    , Normal ,55,30,255,,,   
+Vine Whip   , Grass ,35,10,255,,,   
+Water Gun   , Water ,40,25,255,,,   
+Waterfall   , Water ,80,15,255,,,   
+Wing-Attack , Flying ,35,35,255,,,   
+Wrap        , Normal ,15,20,217,PARTRAP,,   
