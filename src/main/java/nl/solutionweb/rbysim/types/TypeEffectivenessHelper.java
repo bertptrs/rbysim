@@ -1,5 +1,7 @@
 package nl.solutionweb.rbysim.types;
 
+import java.util.Set;
+
 /**
  *
  * @author Bert Peters
@@ -7,10 +9,17 @@ package nl.solutionweb.rbysim.types;
 public class TypeEffectivenessHelper {
 
 
-    public TypeEffectiveness getEffectiveness(Type attack, Type defender) {
-        switch (attack) {
+    /**
+     * Get the effectiveness of an attack on a defending type.
+     *
+     * @param attackType
+     * @param defenderType
+     * @return An effectiveness representing the type.
+     */
+    public TypeEffectiveness getEffectiveness(Type attackType, Type defenderType) {
+        switch (attackType) {
             case BUG:
-                switch (defender) {
+                switch (defenderType) {
                     case FIGHTING:
                     case FIRE:
                     case FLYING:
@@ -27,10 +36,10 @@ public class TypeEffectivenessHelper {
                 }
 
             case DRAGON:
-                return defender == Type.DRAGON ? TypeEffectiveness.SUPER : TypeEffectiveness.NORMAL;
+                return defenderType == Type.DRAGON ? TypeEffectiveness.SUPER : TypeEffectiveness.NORMAL;
 
             case ELECTRIC:
-                switch (defender) {
+                switch (defenderType) {
                     case GROUND:
                         return TypeEffectiveness.IMMUNE;
 
@@ -47,7 +56,7 @@ public class TypeEffectivenessHelper {
                 }
 
             case FIGHTING:
-                switch (defender) {
+                switch (defenderType) {
                     case GHOST:
                         return TypeEffectiveness.IMMUNE;
 
@@ -67,7 +76,7 @@ public class TypeEffectivenessHelper {
                 }
 
             case FIRE:
-                switch (defender) {
+                switch (defenderType) {
                     case DRAGON:
                     case FIRE:
                     case ROCK:
@@ -84,7 +93,7 @@ public class TypeEffectivenessHelper {
                 }
 
             case FLYING:
-                switch (defender) {
+                switch (defenderType) {
                     case ELECTRIC:
                     case ROCK:
                         return TypeEffectiveness.NOT_VERY;
@@ -99,7 +108,7 @@ public class TypeEffectivenessHelper {
                 }
 
             case GHOST:
-                switch (defender) {
+                switch (defenderType) {
                     case NORMAL:
                     case PSYCHIC:
                         return TypeEffectiveness.IMMUNE;
@@ -112,7 +121,7 @@ public class TypeEffectivenessHelper {
                 }
 
             case GRASS:
-                switch (defender) {
+                switch (defenderType) {
                     case BUG:
                     case DRAGON:
                     case FIRE:
@@ -131,7 +140,7 @@ public class TypeEffectivenessHelper {
                 }
 
             case GROUND:
-                switch (defender) {
+                switch (defenderType) {
                     case FLYING:
                         return TypeEffectiveness.IMMUNE;
 
@@ -150,7 +159,7 @@ public class TypeEffectivenessHelper {
                 }
 
             case ICE:
-                switch (defender) {
+                switch (defenderType) {
                     case FIRE:
                     case ICE:
                     case WATER:
@@ -167,7 +176,7 @@ public class TypeEffectivenessHelper {
                 }
 
             case NORMAL:
-                switch (defender) {
+                switch (defenderType) {
                     case GHOST:
                         return TypeEffectiveness.IMMUNE;
 
@@ -179,7 +188,7 @@ public class TypeEffectivenessHelper {
                 }
 
             case POISON:
-                switch (defender) {
+                switch (defenderType) {
                     case GROUND:
                     case POISON:
                     case ROCK:
@@ -194,7 +203,7 @@ public class TypeEffectivenessHelper {
                 }
 
             case PSYCHIC:
-                switch (defender) {
+                switch (defenderType) {
                     case PSYCHIC:
                         return TypeEffectiveness.NOT_VERY;
 
@@ -207,7 +216,7 @@ public class TypeEffectivenessHelper {
                 }
 
             case ROCK:
-                switch (defender) {
+                switch (defenderType) {
                     case FIGHTING:
                     case ROCK:
                         return TypeEffectiveness.NOT_VERY;
@@ -223,7 +232,7 @@ public class TypeEffectivenessHelper {
                 }
 
             case WATER:
-                switch (defender) {
+                switch (defenderType) {
                     case DRAGON:
                     case GRASS:
                     case WATER:
@@ -239,6 +248,15 @@ public class TypeEffectivenessHelper {
                 }
         }
 
-        throw new IllegalArgumentException("No type matchup known for " + attack + " on " + defender);
+        throw new IllegalArgumentException("No type matchup known for " + attackType + " on " + defenderType);
+    }
+
+    public TypeEffectiveness getEffectiveness(Type attackType, Set<Type> defenderTypes) {
+        TypeEffectiveness effectiveness = TypeEffectiveness.NORMAL;
+        for (Type type : defenderTypes) {
+            effectiveness = effectiveness.combine(getEffectiveness(attackType, type));
+        }
+
+        return effectiveness;
     }
 }
