@@ -1,4 +1,4 @@
-package nl.solutionweb.rbysim.pokemon;
+package nl.solutionweb.rbysim.types;
 
 /**
  * Different types to be had.
