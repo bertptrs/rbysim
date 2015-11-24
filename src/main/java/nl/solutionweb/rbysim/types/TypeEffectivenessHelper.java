@@ -218,6 +218,7 @@ public class TypeEffectivenessHelper {
             case ROCK:
                 switch (defenderType) {
                     case FIGHTING:
+                    case GROUND:
                     case ROCK:
                         return TypeEffectiveness.NOT_VERY;
 
