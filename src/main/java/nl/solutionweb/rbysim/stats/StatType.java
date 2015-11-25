@@ -10,7 +10,9 @@ public enum StatType {
     DEFENSE(1),
     SPEED(2),
     SPECIAL(3),
-    HP(4);
+    HP(4),
+    ACCURACY(5),
+    EVASION(6);
 
     private final int index;
 
