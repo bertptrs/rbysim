@@ -36,6 +36,14 @@ public final class VolatileStatus {
      * Whether or not we are recharging.
      */
     private boolean recharging;
+    /**
+     * How long our light screen remains.
+     */
+    private int lightScreenTurns;
+    /**
+     * How long our reflect remains.
+     */
+    private int reflectTurns;
 
     public VolatileStatus() {
         reset();
@@ -48,6 +56,8 @@ public final class VolatileStatus {
         sleepingTurns = 0;
         recharging = false;
         trappedTurns = 0;
+        reflectTurns = 0;
+        lightScreenTurns = 0;
     }
 
     public int getStatBoostLevel(StatType stat) {
@@ -61,7 +71,8 @@ public final class VolatileStatus {
     /**
      * Update the specified stat modifier with the given amount.
      *
-     * This method updates the stat modifier, but respects the maximum boost level.
+     * This method updates the stat modifier, but respects the maximum boost
+     * level.
      *
      * @param stat The stat modifier to change.
      * @param amount The number to change the stat with.
@@ -151,5 +162,46 @@ public final class VolatileStatus {
      */
     public void setRecharging(boolean recharging) {
         this.recharging = recharging;
+    }
+
+    public int modifyStat(StatType stat, int originalValue) {
+        int stage = getStatBoostLevel(stat);
+        int modifiedStat;
+
+        if (stage > 0) {
+            modifiedStat = (originalValue * (2 + stage)) / 2;
+        } else {
+            modifiedStat = (originalValue * 2) / (2 - stage);
+        }
+
+        return Math.min(999, Math.max(1, modifiedStat));
+    }
+
+    /**
+     * @return the lightScreenTurns
+     */
+    public int getLightScreenTurns() {
+        return lightScreenTurns;
+    }
+
+    /**
+     * @param lightScreenTurns the lightScreenTurns to set
+     */
+    public void setLightScreenTurns(int lightScreenTurns) {
+        this.lightScreenTurns = lightScreenTurns;
+    }
+
+    /**
+     * @return the reflectTurns
+     */
+    public int getReflectTurns() {
+        return reflectTurns;
+    }
+
+    /**
+     * @param reflectTurns the reflectTurns to set
+     */
+    public void setReflectTurns(int reflectTurns) {
+        this.reflectTurns = reflectTurns;
     }
 }

@@ -1,10 +1,13 @@
 package nl.solutionweb.rbysim.pokemon;
 
+import java.util.Set;
 import nl.solutionweb.rbysim.stats.BaseStats;
 import nl.solutionweb.rbysim.stats.EVStats;
 import nl.solutionweb.rbysim.stats.IVStats;
 import nl.solutionweb.rbysim.stats.StatType;
 import nl.solutionweb.rbysim.stats.StatusEffect;
+import nl.solutionweb.rbysim.types.Type;
+import nl.solutionweb.rbysim.types.TypeSet;
 
 /**
  *
@@ -13,6 +16,8 @@ import nl.solutionweb.rbysim.stats.StatusEffect;
 public class Pokemon {
 
 	public static final int MAX_LEVEL = 100;
+
+    public static final Pokemon MEWTWO = new Pokemon(BaseStats.MEWTWO, new TypeSet(Type.PSYCHIC));
 
 	private final EVStats evs;
 
@@ -24,29 +29,34 @@ public class Pokemon {
 
     private StatusEffect statusEffect;
 
+    private Set<Type> types;
+
 	/**
 	 * Construct a pokemon with the specified parameters.
 	 *
 	 * @param baseStats
+     * @param types
 	 * @param level
 	 * @param ivs
 	 * @param evs
 	 */
-	public Pokemon(BaseStats baseStats, int level, IVStats ivs, EVStats evs) {
+	public Pokemon(BaseStats baseStats, Set<Type> types, int level, IVStats ivs, EVStats evs) {
 		this.baseStats = baseStats;
 		this.level = level;
 		this.ivs = ivs;
 		this.evs = evs;
         this.statusEffect = StatusEffect.NORMAL;
+        this.types = types;
 	}
 
 	/**
 	 * Construct a pokemon of maximum level, ivs, and evs.
 	 *
 	 * @param baseStats
+     * @param types
 	 */
-	public Pokemon(BaseStats baseStats) {
-		this(baseStats, MAX_LEVEL, new IVStats(), new EVStats());
+	public Pokemon(BaseStats baseStats, Set<Type> types) {
+		this(baseStats, types, MAX_LEVEL, new IVStats(), new EVStats());
 	}
 
 	/**
@@ -78,5 +88,19 @@ public class Pokemon {
 
     public void setStatusEffect(StatusEffect newStatus) {
         statusEffect = newStatus;
+    }
+
+    /**
+     * @return the level
+     */
+    public int getLevel() {
+        return level;
+    }
+
+    /**
+     * @return the types
+     */
+    public Set<Type> getTypes() {
+        return types;
     }
 }

@@ -64,6 +64,8 @@ public class VolatileStatusTest {
         assertFalse(status.isRecharging());
         assertEquals(0, status.getSleepingTurns());
         assertEquals(0, status.getTrappedTurns());
+        assertEquals(0, status.getLightScreenTurns());
+        assertEquals(0, status.getReflectTurns());
     }
 
 }
