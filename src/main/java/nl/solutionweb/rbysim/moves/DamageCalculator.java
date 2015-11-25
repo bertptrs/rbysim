@@ -4,6 +4,7 @@ import java.util.concurrent.ThreadLocalRandom;
 import nl.solutionweb.rbysim.pokemon.Pokemon;
 import nl.solutionweb.rbysim.pokemon.VolatileStatus;
 import nl.solutionweb.rbysim.stats.StatType;
+import nl.solutionweb.rbysim.types.TypeEffectiveness;
 import nl.solutionweb.rbysim.types.TypeEffectivenessHelper;
 
 /**
@@ -89,7 +90,8 @@ public class DamageCalculator {
 
         // Apply type effectiveness.
         // TODO move this to the TypeEffectiveness class.
-        damage *= typeEffectivenessHelper.getEffectiveness(move.getType(), defender.getTypes()).getModifier();
+        TypeEffectiveness effectiveness = typeEffectivenessHelper.getEffectiveness(move.getType(), defender.getTypes());
+        damage = effectiveness.modifyDamage(damage);
 
         return damage;
     }

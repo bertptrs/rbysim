@@ -6,12 +6,10 @@ package nl.solutionweb.rbysim.types;
  * @author Bert Peters
  */
 public enum TypeEffectiveness {
-    NOT_VERY(0.5f, "not very effective"), DOUBLE_NOT_VERY(0.25f, "not very effective"), IMMUNE(0, "no effect"), SUPER(2, "super effective"), DOUBLE_SUPER(4, "super effective"), NORMAL(1, "normally effective");
-    private final float modifier;
+    NOT_VERY("not very effective"), DOUBLE_NOT_VERY("not very effective"), IMMUNE("no effect"), SUPER("super effective"), DOUBLE_SUPER("super effective"), NORMAL("normally effective");
     private final String description;
 
-    private TypeEffectiveness(float modifier, String description) {
-        this.modifier = modifier;
+    private TypeEffectiveness(String description) {
         this.description = description;
     }
 
@@ -46,12 +44,31 @@ public enum TypeEffectiveness {
         throw new IllegalArgumentException("Effectiveness " + this + " cannot stack with " + other);
     }
 
-    public float getModifier() {
-        return modifier;
-    }
-
     public String getDescription() {
         return description;
     }
 
+    public int modifyDamage(int original) {
+        switch (this) {
+            case DOUBLE_NOT_VERY:
+                return original / 4;
+
+            case DOUBLE_SUPER:
+                return original * 4;
+
+            case IMMUNE:
+                return 0;
+
+            case NORMAL:
+                return original;
+
+            case NOT_VERY:
+                return original / 2;
+
+            case SUPER:
+                return original * 2;
+        }
+
+        throw new UnsupportedOperationException("Cannot modify damage for " + this);
+    }
 }
