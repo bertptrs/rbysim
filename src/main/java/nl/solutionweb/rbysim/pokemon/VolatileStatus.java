@@ -3,6 +3,7 @@ package nl.solutionweb.rbysim.pokemon;
 import java.util.HashMap;
 import java.util.Map;
 import nl.solutionweb.rbysim.stats.StatType;
+import nl.solutionweb.rbysim.util.MathUtil;
 
 /**
  * Container for the volatile state of a pokemon.
@@ -83,7 +84,7 @@ public final class VolatileStatus {
         int newLevel = currentLevel + amount;
 
         // Clamp the value in the allowed range.
-        newLevel = Math.max(Math.min(newLevel, MAX_BOOST_LEVEL), -MAX_BOOST_LEVEL);
+        newLevel = MathUtil.clamp(newLevel, -MAX_BOOST_LEVEL, MAX_BOOST_LEVEL);
         if (newLevel != currentLevel) {
             statModifiers.put(stat, newLevel);
             lastChanges.put(stat, amount);
@@ -174,7 +175,7 @@ public final class VolatileStatus {
             modifiedStat = (originalValue * 2) / (2 - stage);
         }
 
-        return Math.min(999, Math.max(1, modifiedStat));
+        return MathUtil.clamp(modifiedStat, 1, 999);
     }
 
     /**

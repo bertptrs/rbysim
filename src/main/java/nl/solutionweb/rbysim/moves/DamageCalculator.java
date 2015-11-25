@@ -6,6 +6,7 @@ import nl.solutionweb.rbysim.pokemon.VolatileStatus;
 import nl.solutionweb.rbysim.stats.StatType;
 import nl.solutionweb.rbysim.types.TypeEffectiveness;
 import nl.solutionweb.rbysim.types.TypeEffectivenessHelper;
+import nl.solutionweb.rbysim.util.MathUtil;
 
 /**
  * Calculate damage for a specific move.
@@ -60,7 +61,7 @@ public class DamageCalculator {
             VolatileStatus attackerStatus, Pokemon defender,
             VolatileStatus defenderStatus) {
         final TypeEffectivenessHelper typeEffectivenessHelper = new TypeEffectivenessHelper();
-        final int level = attacker.getLevel() * (isCritical ? 2 : 1);
+        final int LC = attacker.getLevel() * (isCritical ? 2 : 1);
         int attackStat = getAttackStat(move, isCritical, attacker, attackerStatus);
         int defendStat = getDefendStat(move, isCritical, defender, defenderStatus);
         if (attackStat > 0xff || defendStat > 0xff) {
@@ -74,9 +75,8 @@ public class DamageCalculator {
         if (move.getEffect() == Move.Effect.SELFDESTRUCT) {
             defendStat /= 2;
         }
-        // TODO incorporate badge bonus somehow.
 
-        int damage = (4 * (level % 256)) / 5 + 2;
+        int damage = MathUtil.fracMultiply(LC % 256, 2, 5) + 2;
         damage *= move.getPower();
         damage *= Math.max(attackStat, 1);
         damage /= Math.max(defendStat, 1);
@@ -88,8 +88,6 @@ public class DamageCalculator {
             damage /= 2;
         }
 
-        // Apply type effectiveness.
-        // TODO move this to the TypeEffectiveness class.
         TypeEffectiveness effectiveness = typeEffectivenessHelper.getEffectiveness(move.getType(), defender.getTypes());
         damage = effectiveness.modifyDamage(damage);
 
