@@ -15,68 +15,68 @@ import nl.solutionweb.rbysim.types.TypeSet;
  */
 public class Pokemon {
 
-	public static final int MAX_LEVEL = 100;
+    public static final int MAX_LEVEL = 100;
 
     public static final Pokemon MEWTWO = new Pokemon(BaseStats.MEWTWO, new TypeSet(Type.PSYCHIC));
 
-	private final EVStats evs;
+    private final EVStats evs;
 
-	private final IVStats ivs;
+    private final IVStats ivs;
 
-	private final BaseStats baseStats;
+    private final BaseStats baseStats;
 
-	private final int level;
+    private final int level;
 
     private StatusEffect statusEffect;
 
     private Set<Type> types;
 
-	/**
-	 * Construct a pokemon with the specified parameters.
-	 *
-	 * @param baseStats
+    /**
+     * Construct a pokemon with the specified parameters.
+     *
+     * @param baseStats
      * @param types
-	 * @param level
-	 * @param ivs
-	 * @param evs
-	 */
-	public Pokemon(BaseStats baseStats, Set<Type> types, int level, IVStats ivs, EVStats evs) {
-		this.baseStats = baseStats;
-		this.level = level;
-		this.ivs = ivs;
-		this.evs = evs;
+     * @param level
+     * @param ivs
+     * @param evs
+     */
+    public Pokemon(BaseStats baseStats, Set<Type> types, int level, IVStats ivs, EVStats evs) {
+        this.baseStats = baseStats;
+        this.level = level;
+        this.ivs = ivs;
+        this.evs = evs;
         this.statusEffect = StatusEffect.NORMAL;
         this.types = types;
-	}
+    }
 
-	/**
-	 * Construct a pokemon of maximum level, ivs, and evs.
-	 *
-	 * @param baseStats
+    /**
+     * Construct a pokemon of maximum level, ivs, and evs.
+     *
+     * @param baseStats
      * @param types
-	 */
-	public Pokemon(BaseStats baseStats, Set<Type> types) {
-		this(baseStats, types, MAX_LEVEL, new IVStats(), new EVStats());
-	}
+     */
+    public Pokemon(BaseStats baseStats, Set<Type> types) {
+        this(baseStats, types, MAX_LEVEL, new IVStats(), new EVStats());
+    }
 
-	/**
-	 * Compute a specific stat before applying stat modifiers.
-	 *
-	 * @param stat The stat to compute. Calculation slightly differs between
-	 * hitpoints and the rest.
-	 * @return An integer value representing the unmodified stat.
-	 */
-	public int getUnboostedStat(StatType stat) {
-		final int Cl = stat == StatType.HP ? level + 10 : 5;
-		int statValue = 1 + (int) Math.sqrt(Math.max(evs.getStatValue(stat), 0));
-		statValue /= 4;
-		statValue = Math.min(statValue, 63);
-		statValue += 2 * (ivs.getStatValue(stat) + baseStats.getStatValue(stat));
-		statValue *= level;
-		statValue /= 100;
+    /**
+     * Compute a specific stat before applying stat modifiers.
+     *
+     * @param stat The stat to compute. Calculation slightly differs between
+     * hitpoints and the rest.
+     * @return An integer value representing the unmodified stat.
+     */
+    public int getUnboostedStat(StatType stat) {
+        final int Cl = stat == StatType.HP ? level + 10 : 5;
+        int statValue = 1 + (int) Math.sqrt(Math.max(getEvs().getStatValue(stat), 0));
+        statValue /= 4;
+        statValue = Math.min(statValue, 63);
+        statValue += 2 * (getIvs().getStatValue(stat) + getBaseStats().getStatValue(stat));
+        statValue *= level;
+        statValue /= 100;
 
-		return statValue + Cl;
-	}
+        return statValue + Cl;
+    }
 
     public boolean hasStatusEffect() {
         return statusEffect != StatusEffect.NORMAL;
@@ -102,5 +102,26 @@ public class Pokemon {
      */
     public Set<Type> getTypes() {
         return types;
+    }
+
+    /**
+     * @return the evs
+     */
+    public EVStats getEvs() {
+        return evs;
+    }
+
+    /**
+     * @return the ivs
+     */
+    public IVStats getIvs() {
+        return ivs;
+    }
+
+    /**
+     * @return the baseStats
+     */
+    public BaseStats getBaseStats() {
+        return baseStats;
     }
 }

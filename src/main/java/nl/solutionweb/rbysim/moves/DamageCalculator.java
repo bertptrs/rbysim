@@ -40,7 +40,7 @@ public class DamageCalculator {
     public int calculateRawDamage(DamagingMove move, Pokemon attacker,
             VolatileStatus attackerStatus, Pokemon defender,
             VolatileStatus defenderStatus) {
-        return calculateRawDamage(move, isCrit(move, attacker, attackerStatus),
+        return calculateRawDamage(move, isCrit(move, attacker),
                 attacker, attackerStatus, defender, defenderStatus);
     }
 
@@ -126,13 +126,14 @@ public class DamageCalculator {
      *
      * The output of this method is random.
      *
-     * @param move THe move to be used. Relevant because some moves have a larger critical hit ratio.
+     * @param move THe move to be used. Relevant because some moves have a
+     * larger critical hit ratio.
      * @param attacker The attacking pokemon
-     * @param attackerStatus The attacker's volatile stats.
-     * @return boolean True if the move should be a critical hit, false otherwise.
+     * @return boolean True if the move should be a critical hit, false
+     * otherwise.
      */
-    public boolean isCrit(Move move, Pokemon attacker, VolatileStatus attackerStatus) {
-        int speedStat = getStat(StatType.SPEED, false, attacker, attackerStatus);
+    public boolean isCrit(Move move, Pokemon attacker) {
+        int speedStat = attacker.getBaseStats().getStatValue(StatType.SPEED);
         int modifier = move.getEffect() == Move.Effect.EXTRA_CRIT ? 8 : 1;
         int rating = Math.min(0xff, modifier * (speedStat / 2));
         return rating > ThreadLocalRandom.current().nextInt(0x100);

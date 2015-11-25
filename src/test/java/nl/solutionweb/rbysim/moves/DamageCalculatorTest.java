@@ -1,14 +1,14 @@
 package nl.solutionweb.rbysim.moves;
 
 import nl.solutionweb.rbysim.pokemon.Pokemon;
-import nl.solutionweb.rbysim.pokemon.VolatileStatus;
 import nl.solutionweb.rbysim.types.Type;
 import org.junit.Assert;
 import org.junit.Test;
 
 /**
+ * Test cases for the Damage calculator.
  *
- * @author s1147919
+ * @author Bert Peters
  */
 public class DamageCalculatorTest {
 
@@ -18,19 +18,21 @@ public class DamageCalculatorTest {
         final int iterations = 1000000;
         int normalCrit = 0;
         int highCrit = 0;
-        VolatileStatus status = new VolatileStatus();
         Pokemon attacker = Pokemon.MEWTWO;
         DamagingMove normalMove = new DamagingMove(Type.FIRE, 80, 255, Move.Effect.NONE);
         DamagingMove highCritMove = new DamagingMove(Type.FIRE, 80, 255, Move.Effect.EXTRA_CRIT);
         for (int i = 0; i < iterations; i++) {
-            if (instance.isCrit(normalMove, attacker, status)) {
+            if (instance.isCrit(normalMove, attacker)) {
                 normalCrit++;
             }
-            if (instance.isCrit(highCritMove, attacker, status)) {
+            if (instance.isCrit(highCritMove, attacker)) {
                 highCrit++;
             }
         }
 
-        Assert.assertEquals(0.996, ((double) highCrit) / iterations, 0.01);
+        // Source: http://www.smogon.com/rb/articles/critical_hits
+        Assert.assertEquals(0.254, normalCrit / (double) iterations, 0.001);
+        // Assure that the we still have some non-crits due to the strict comparison.
+        Assert.assertEquals(0.996, highCrit / (double) iterations, 0.001);
     }
 }
