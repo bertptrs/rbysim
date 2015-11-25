@@ -20,7 +20,11 @@ public enum Type {
     ELECTRIC(true),
     PSYCHIC(true),
     ICE(true),
-    DRAGON(true);
+    DRAGON(true),
+    /**
+     * Typeless type. Used for calculating confusion damage.
+     */
+    TYPELESS(false);
 
     private final boolean special;
 

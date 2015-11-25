@@ -32,4 +32,15 @@ public class TypeEffectivenessHelperTest {
         assertEquals(TypeEffectiveness.NORMAL, typeHelper.getEffectiveness(Type.WATER, new TypeSet(Type.ROCK, Type.WATER)));
     }
 
+    /**
+     * Verify that the typeless type does normal damage against everything.
+     */
+    @Test
+    public void testTypelessType() {
+        TypeEffectivenessHelper typeHelper = new TypeEffectivenessHelper();
+        for (Type defenderType : Type.values()) {
+            assertEquals(TypeEffectiveness.NORMAL, typeHelper.getEffectiveness(Type.TYPELESS, defenderType));
+        }
+    }
+
 }

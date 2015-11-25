@@ -247,6 +247,9 @@ public class TypeEffectivenessHelper {
                     default:
                         return TypeEffectiveness.NORMAL;
                 }
+
+            case TYPELESS:
+                return TypeEffectiveness.NORMAL;
         }
 
         throw new IllegalArgumentException("No type matchup known for " + attackType + " on " + defenderType);
