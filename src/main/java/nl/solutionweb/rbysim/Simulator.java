@@ -36,7 +36,7 @@ public class Simulator {
                 }
                 System.out.print(representation);
             }
-            System.out.println();
+            System.out.println(attackType);
         }
     }
 }
