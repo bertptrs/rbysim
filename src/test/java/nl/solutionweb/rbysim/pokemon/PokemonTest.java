@@ -1,5 +1,6 @@
-package nl.solutionweb.rbysim;
+package nl.solutionweb.rbysim.pokemon;
 
+import nl.solutionweb.rbysim.pokemon.Pokemon;
 import nl.solutionweb.rbysim.stats.BaseStats;
 import nl.solutionweb.rbysim.stats.StatType;
 import org.junit.Test;

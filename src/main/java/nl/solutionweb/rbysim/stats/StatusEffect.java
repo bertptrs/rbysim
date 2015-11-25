@@ -33,5 +33,9 @@ public enum StatusEffect {
     /**
      * Paralyzed. May not attack and speed drop.
      */
-    PARALYZED
+    PARALYZED,
+    /**
+     * Fainted.
+     */
+    FAINTED,
 }

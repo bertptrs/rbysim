@@ -1,9 +1,10 @@
-package nl.solutionweb.rbysim;
+package nl.solutionweb.rbysim.pokemon;
 
 import nl.solutionweb.rbysim.stats.BaseStats;
 import nl.solutionweb.rbysim.stats.EVStats;
 import nl.solutionweb.rbysim.stats.IVStats;
 import nl.solutionweb.rbysim.stats.StatType;
+import nl.solutionweb.rbysim.stats.StatusEffect;
 
 /**
  *
@@ -21,6 +22,8 @@ public class Pokemon {
 
 	private final int level;
 
+    private StatusEffect statusEffect;
+
 	/**
 	 * Construct a pokemon with the specified parameters.
 	 *
@@ -34,6 +37,7 @@ public class Pokemon {
 		this.level = level;
 		this.ivs = ivs;
 		this.evs = evs;
+        this.statusEffect = StatusEffect.NORMAL;
 	}
 
 	/**
@@ -64,4 +68,15 @@ public class Pokemon {
 		return statValue + Cl;
 	}
 
+    public boolean hasStatusEffect() {
+        return statusEffect != StatusEffect.NORMAL;
+    }
+
+    public StatusEffect getStatusEffect() {
+        return statusEffect;
+    }
+
+    public void setStatusEffect(StatusEffect newStatus) {
+        statusEffect = newStatus;
+    }
 }
