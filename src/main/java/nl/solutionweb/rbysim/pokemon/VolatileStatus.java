@@ -10,7 +10,7 @@ import nl.solutionweb.rbysim.util.MathUtil;
  *
  * @author Bert Peters
  */
-public final class VolatileStatus {
+public class VolatileStatus {
 
     public static int MAX_BOOST_LEVEL = 6;
 
@@ -50,7 +50,7 @@ public final class VolatileStatus {
         reset();
     }
 
-    public void reset() {
+    public final void reset() {
         statModifiers.clear();
         lastChanges.clear();
         confused = false;

@@ -141,4 +141,43 @@ public class DamageCalculator {
         int rating = Math.min(0xff, modifier * (speedStat / 2));
         return rating > ThreadLocalRandom.current().nextInt(0x100);
     }
+
+    /**
+     * Calculate the probability that a given move hits.
+     *
+     * @param move The move used.
+     * @param attackerStatus The attacker status, used for his accuracy rating.
+     * @param defenderStatus The defender status, used for his evasion rating.
+     * @return The probability of hitting as a fraction of 256. The probability
+     * is the value returned by this method divided by 256.
+     */
+    public int hitProbability(Move move, VolatileStatus attackerStatus, VolatileStatus defenderStatus) {
+        if (!move.targetsOther()) {
+            throw new IllegalArgumentException("Self targeting moves do not have a hit probability.");
+        }
+
+        int baseAccuracy = move.getAccuracy();
+        int accuracy = attackerStatus.modifyStat(StatType.ACCURACY, 255);
+        int evasion = defenderStatus.modifyStat(StatType.EVASION, 255);
+
+        return MathUtil.clamp((accuracy * baseAccuracy) / evasion, 0, 255);
+    }
+
+    /**
+     * Check whether a move should hit or not.
+     *
+     * This method takes into account that an always-hitting move misses once
+     * every 256 times.
+     *
+     * @param move The move used.
+     * @param attackerStatus The attacker status, used for his accuracy rating.
+     * @param defenderStatus The defender status, used for his evasion rating.
+     * @return True if it hits, false otherwise.
+     */
+    public boolean isHit(Move move, VolatileStatus attackerStatus, VolatileStatus defenderStatus) {
+        int hitProbability = hitProbability(move, attackerStatus, defenderStatus);
+        int random = ThreadLocalRandom.current().nextInt(256);
+
+        return random < hitProbability;
+    }
 }
