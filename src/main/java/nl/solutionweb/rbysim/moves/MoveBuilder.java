@@ -1,5 +1,7 @@
 package nl.solutionweb.rbysim.moves;
 
+import nl.solutionweb.rbysim.stats.StatType;
+import nl.solutionweb.rbysim.stats.StatusEffect;
 import nl.solutionweb.rbysim.types.Type;
 
 
@@ -11,13 +13,16 @@ public class MoveBuilder {
     private Move.Effect effect = Move.Effect.NONE;
     private boolean dealDamage = false;
     private int effectProbability = 0;
+    private int effectStrength = 1;
+    private StatType effectStat = StatType.ATTACK;
+    private StatusEffect effectStatus = StatusEffect.NORMAL;
     private int power = 0;
     private boolean damageFixed = false;
     private final String name;
 
     public MoveBuilder(String name, Type type) {
-        this.name = name;
         this.type = type;
+        this.name = name;
     }
 
     public MoveBuilder setTargetOther(boolean targetOther) {
@@ -45,8 +50,26 @@ public class MoveBuilder {
         return this;
     }
 
+    public MoveBuilder setEffectStrength(int effectStrength) {
+        this.effectStrength = effectStrength;
+        return this;
+    }
+
+    public MoveBuilder setEffectStat(StatType effectStat) {
+        this.effectStat = effectStat;
+        return this;
+    }
+
+    public MoveBuilder setEffectStatus(StatusEffect effectStatus) {
+        this.effectStatus = effectStatus;
+        return this;
+    }
+
     public MoveBuilder setPower(int power) {
         this.power = power;
+        if (power > 0) {
+            setDealDamage(true);
+        }
         return this;
     }
 
@@ -56,7 +79,7 @@ public class MoveBuilder {
     }
 
     public Move createMove() {
-        return new Move(type, targetOther, accuracy, effect, dealDamage, effectProbability, power, damageFixed, name);
+        return new Move(type, targetOther, accuracy, effect, dealDamage, effectProbability, effectStrength, effectStat, effectStatus, power, damageFixed, name);
     }
 
 }

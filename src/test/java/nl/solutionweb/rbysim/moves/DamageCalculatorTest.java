@@ -25,8 +25,8 @@ public class DamageCalculatorTest {
         int normalCrit = 0;
         int highCrit = 0;
         Pokemon attacker = Pokemon.MEWTWO;
-        DamagingMove normalMove = new DamagingMove(Type.FIRE, 80, 255, Move.Effect.NONE);
-        DamagingMove highCritMove = new DamagingMove(Type.FIRE, 80, 255, Move.Effect.EXTRA_CRIT);
+        Move normalMove = new MoveBuilder("", Type.FIRE).createMove();
+        Move highCritMove = new MoveBuilder("", Type.FIRE).setEffect(Move.Effect.EXTRA_CRIT).createMove();
         for (int i = 0; i < iterations; i++) {
             if (instance.isCrit(normalMove, attacker)) {
                 normalCrit++;
@@ -58,7 +58,8 @@ public class DamageCalculatorTest {
         when(slowbro.getTypes()).thenReturn(typings);
         when(slowbro.getUnboostedStat(StatType.SPECIAL)).thenReturn(258);
 
-        DamagingMove thunderbolt = mock(DamagingMove.class);
+        Move thunderbolt = mock(Move.class);
+        when(thunderbolt.isDamaging()).thenReturn(true);
         when(thunderbolt.getPower()).thenReturn(95);
         when(thunderbolt.getType()).then(new Answer<Type> () {
             @Override

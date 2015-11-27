@@ -60,6 +60,9 @@ public class DamageCalculator {
     public int calculateRawDamage(Move move, boolean isCritical, Pokemon attacker,
             VolatileStatus attackerStatus, Pokemon defender,
             VolatileStatus defenderStatus) {
+        if (!move.isDamaging()) {
+            throw new IllegalArgumentException("Can only calculate damage for damaging moves.");
+        }
         final TypeEffectivenessHelper typeEffectivenessHelper = new TypeEffectivenessHelper();
         final int LC = attacker.getLevel() * (isCritical ? 2 : 1);
         int attackStat = getAttackStat(move, isCritical, attacker, attackerStatus);
@@ -101,17 +104,17 @@ public class DamageCalculator {
      * @param status The
      * @return
      */
-    private boolean hasBarrier(DamagingMove move, VolatileStatus status) {
+    private boolean hasBarrier(Move move, VolatileStatus status) {
         int turnsRemaining = move.getType().isSpecial() ? status.getLightScreenTurns() : status.getReflectTurns();
         return turnsRemaining > 0;
     }
 
-    private int getAttackStat(DamagingMove move, boolean isCritical, Pokemon attacker, VolatileStatus attackerStatus) {
+    private int getAttackStat(Move move, boolean isCritical, Pokemon attacker, VolatileStatus attackerStatus) {
         StatType stat = move.getType().isSpecial() ? StatType.SPECIAL : StatType.ATTACK;
         return getStat(stat, isCritical, attacker, attackerStatus);
     }
 
-    private int getDefendStat(DamagingMove move, boolean isCritical, Pokemon defender, VolatileStatus defenderStatus) {
+    private int getDefendStat(Move move, boolean isCritical, Pokemon defender, VolatileStatus defenderStatus) {
         StatType stat = move.getType().isSpecial() ? StatType.SPECIAL : StatType.DEFENSE;
         return getStat(stat, isCritical, defender, defenderStatus);
     }
