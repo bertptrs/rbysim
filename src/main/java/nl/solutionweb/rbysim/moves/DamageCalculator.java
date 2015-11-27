@@ -15,7 +15,7 @@ import nl.solutionweb.rbysim.util.MathUtil;
  */
 public class DamageCalculator {
 
-    public int calculateDamage(DamagingMove move, Pokemon attacker,
+    public int calculateDamage(Move move, Pokemon attacker,
             VolatileStatus attackerStatus, Pokemon defender,
             VolatileStatus defenderStatus) {
         int rawDamage = calculateRawDamage(move, attacker, attackerStatus, defender, defenderStatus);
@@ -39,7 +39,7 @@ public class DamageCalculator {
      * @param defenderStatus The defenders volatile status.
      * @return The damage, without the random modifier.
      */
-    public int calculateRawDamage(DamagingMove move, Pokemon attacker,
+    public int calculateRawDamage(Move move, Pokemon attacker,
             VolatileStatus attackerStatus, Pokemon defender,
             VolatileStatus defenderStatus) {
         return calculateRawDamage(move, isCrit(move, attacker),
@@ -57,7 +57,7 @@ public class DamageCalculator {
      * @param defenderStatus The defenders volatile status.
      * @return The raw damage calculated.
      */
-    public int calculateRawDamage(DamagingMove move, boolean isCritical, Pokemon attacker,
+    public int calculateRawDamage(Move move, boolean isCritical, Pokemon attacker,
             VolatileStatus attackerStatus, Pokemon defender,
             VolatileStatus defenderStatus) {
         final TypeEffectivenessHelper typeEffectivenessHelper = new TypeEffectivenessHelper();
