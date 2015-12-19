@@ -6,33 +6,40 @@ package nl.solutionweb.rbysim.types;
  * @author Bert Peters
  */
 public enum Type {
-    NORMAL(false),
-    FIGHTING(false),
-    FLYING(false),
-    POISON(false),
-    GROUND(false),
-    ROCK(false),
-    BUG(false),
-    GHOST(false),
-    FIRE(true),
-    WATER(true),
-    GRASS(true),
-    ELECTRIC(true),
-    PSYCHIC(true),
-    ICE(true),
-    DRAGON(true),
+    NORMAL("Normal", false),
+    FIGHTING("Fighting", false),
+    FLYING("Flying", false),
+    POISON("Poison", false),
+    GROUND("Ground", false),
+    ROCK("Rock", false),
+    BUG("Bug", false),
+    GHOST("Ghost", false),
+    FIRE("Fire", true),
+    WATER("Water", true),
+    GRASS("Grass", true),
+    ELECTRIC("Electric", true),
+    PSYCHIC("Psychic", true),
+    ICE("Ice", true),
+    DRAGON("Dragon", true),
     /**
      * Typeless type. Used for calculating confusion damage.
      */
-    TYPELESS(false);
+    TYPELESS("Typeless", false);
 
     private final boolean special;
+    private final String name;
 
-    private Type(boolean special) {
+    private Type(String name, boolean special) {
         this.special = special;
+        this.name = name;
     }
 
     public boolean isSpecial() {
         return special;
+    }
+
+    @Override
+    public String toString() {
+        return name;
     }
 }

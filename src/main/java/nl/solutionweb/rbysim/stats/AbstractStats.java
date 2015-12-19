@@ -1,5 +1,8 @@
 package nl.solutionweb.rbysim.stats;
 
+import java.util.Arrays;
+import java.util.Objects;
+
 /**
  * Abstract base class for stats.
  *
@@ -26,6 +29,29 @@ public abstract class AbstractStats {
 
     public int getStatValue(StatType stat) {
         return statValues[stat.getIndex()];
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        Objects.requireNonNull(obj);
+        if (!(obj instanceof AbstractStats)) {
+            return false;
+        }
+
+        AbstractStats other = (AbstractStats) obj;
+
+        for (StatType statType : StatType.values()) {
+            if (getStatValue(statType) != other.getStatValue(statType)) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        return Arrays.hashCode(statValues);
     }
 
 }
