@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<movedatabase>
+    <move name="struggle" type="Normal" power="50" accuracy="255" effect="recoil" effectStrength="2"/>
+    <move name="tackle" type="Normal" power="35" accuracy="242" />
+</movedatabase>

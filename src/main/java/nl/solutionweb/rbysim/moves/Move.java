@@ -26,7 +26,7 @@ public class Move {
      * Whether or not this move targets the other player.
      */
     @XmlAttribute
-    private boolean targetOther = false;
+    private boolean targetOther = true;
     /**
      * The accuracy for the move.
      *
@@ -77,6 +77,9 @@ public class Move {
      */
     @XmlAttribute(required = true)
     private String name;
+
+    private Move() {
+    }
 
     public Move(Type type, boolean targetOther, int accuracy, Effect effect, boolean dealDamage, int effectProbability, int effectStrength, StatType effectStat, StatusEffect effectStatus, int power, boolean damageFixed, String name) {
         this.type = type;
