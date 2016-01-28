@@ -12,7 +12,7 @@ import nl.solutionweb.rbysim.util.MathUtil;
  */
 public class VolatileStatus {
 
-    public static int MAX_BOOST_LEVEL = 6;
+    public static final int MAX_BOOST_LEVEL = 6;
 
     private final Map<StatType, Integer> statModifiers = new HashMap<>();
 

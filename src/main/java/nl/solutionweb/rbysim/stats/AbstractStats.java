@@ -1,7 +1,6 @@
 package nl.solutionweb.rbysim.stats;
 
 import java.util.Arrays;
-import java.util.Objects;
 
 /**
  * Abstract base class for stats.
@@ -33,8 +32,7 @@ public abstract class AbstractStats {
 
     @Override
     public boolean equals(Object obj) {
-        Objects.requireNonNull(obj);
-        if (!(obj instanceof AbstractStats)) {
+        if (obj == null || !(obj instanceof AbstractStats)) {
             return false;
         }
 

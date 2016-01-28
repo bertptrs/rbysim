@@ -104,5 +104,19 @@ public class Pokedex {
 
             return name.compareToIgnoreCase(o.name);
         }
+
+        @Override
+        public boolean equals(Object obj) {
+            if (obj == null || !(obj instanceof XMLPokemon)) {
+                return false;
+            }
+
+            return ((XMLPokemon) obj).name.equalsIgnoreCase(name);
+        }
+
+        @Override
+        public int hashCode() {
+            return name.toLowerCase().hashCode();
+        }
     }
 }

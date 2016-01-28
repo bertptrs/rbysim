@@ -33,6 +33,9 @@ public class Simulator {
                     case NOT_VERY:
                         representation = "- ";
                         break;
+
+                    default:
+                        representation = "  ";
                 }
                 System.out.print(representation);
             }
