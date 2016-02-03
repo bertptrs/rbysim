@@ -19,6 +19,7 @@ public class MoveBuilder {
     private int power = 0;
     private boolean damageFixed = false;
     private final String name;
+    private int pp = 5;
 
     public MoveBuilder(String name, Type type) {
         this.type = type;
@@ -78,8 +79,13 @@ public class MoveBuilder {
         return this;
     }
 
+    public MoveBuilder setPP(int pp) {
+        this.pp = pp;
+        return this;
+    }
+
     public Move createMove() {
-        return new Move(type, targetOther, accuracy, effect, dealDamage, effectProbability, effectStrength, effectStat, effectStatus, power, damageFixed, name);
+        return new Move(type, targetOther, accuracy, effect, dealDamage, effectProbability, effectStrength, effectStat, effectStatus, power, damageFixed, name, pp);
     }
 
 }

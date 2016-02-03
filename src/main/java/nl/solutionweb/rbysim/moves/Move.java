@@ -16,6 +16,8 @@ import nl.solutionweb.rbysim.types.TypeXMLAdapter;
  */
 @XmlType(name = "move")
 public class Move {
+
+    public static final Move STRUGGLE = new Move(Type.NORMAL, true, 255, Effect.RECOIL, true, 255, 2, null, StatusEffect.NORMAL, 0, true, "struggle", 5);
     /**
      * Type of the move.
      */
@@ -78,10 +80,13 @@ public class Move {
     @XmlAttribute(required = true)
     private String name;
 
+    @XmlAttribute
+    private int pp = 5;
+
     private Move() {
     }
 
-    public Move(Type type, boolean targetOther, int accuracy, Effect effect, boolean dealDamage, int effectProbability, int effectStrength, StatType effectStat, StatusEffect effectStatus, int power, boolean damageFixed, String name) {
+    public Move(Type type, boolean targetOther, int accuracy, Effect effect, boolean dealDamage, int effectProbability, int effectStrength, StatType effectStat, StatusEffect effectStatus, int power, boolean damageFixed, String name, int pp) {
         this.type = type;
         this.targetOther = targetOther;
         this.accuracy = accuracy;
@@ -198,9 +203,16 @@ public class Move {
         return name;
     }
 
+    /**
+     * @return the pp
+     */
+    public int getPp() {
+        return pp;
+    }
+
     @XmlType
     @XmlEnum(String.class)
-    public enum Effect {
+    public static enum Effect {
         @XmlEnumValue("miss") MISS,
         @XmlEnumValue("none") NONE,
         @XmlEnumValue("status") STATUS,

@@ -27,6 +27,7 @@ public class MoveDatabaseTest {
         Assert.assertEquals(242, tackle.getAccuracy());
         Assert.assertEquals(Move.Effect.NONE, tackle.getEffect());
         Assert.assertEquals(0, tackle.getEffectProbability());
+        Assert.assertEquals(35, tackle.getPp());
 
         Move struggle = instance.get("struggle");
         Assert.assertEquals(50, struggle.getPower());
