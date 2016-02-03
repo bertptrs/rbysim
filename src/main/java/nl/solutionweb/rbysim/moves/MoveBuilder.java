@@ -20,6 +20,11 @@ public class MoveBuilder {
     private boolean damageFixed = false;
     private final String name;
     private int pp = 5;
+    private int priority = 0;
+
+    public void setPriority(int priority) {
+        this.priority = priority;
+    }
 
     public MoveBuilder(String name, Type type) {
         this.type = type;
@@ -85,7 +90,7 @@ public class MoveBuilder {
     }
 
     public Move createMove() {
-        return new Move(type, targetOther, accuracy, effect, dealDamage, effectProbability, effectStrength, effectStat, effectStatus, power, damageFixed, name, pp);
+        return new Move(type, targetOther, accuracy, effect, dealDamage, effectProbability, effectStrength, effectStat, effectStatus, power, damageFixed, name, pp, priority);
     }
 
 }

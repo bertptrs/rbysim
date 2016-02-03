@@ -1,5 +1,6 @@
 package nl.solutionweb.rbysim.moves;
 
+import java.util.Objects;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlEnum;
 import javax.xml.bind.annotation.XmlEnumValue;
@@ -17,7 +18,7 @@ import nl.solutionweb.rbysim.types.TypeXMLAdapter;
 @XmlType(name = "move")
 public class Move {
 
-    public static final Move STRUGGLE = new Move(Type.NORMAL, true, 255, Effect.RECOIL, true, 255, 2, null, StatusEffect.NORMAL, 0, true, "struggle", 5);
+    public static final Move STRUGGLE = new Move(Type.NORMAL, true, 255, Effect.RECOIL, true, 255, 2, null, StatusEffect.NORMAL, 0, true, "struggle", 5, 0);
     /**
      * Type of the move.
      */
@@ -80,13 +81,28 @@ public class Move {
     @XmlAttribute(required = true)
     private String name;
 
+    /**
+     * The base amount of PP for this move.
+     *
+     * Should be divisible by 5.
+     */
     @XmlAttribute
     private int pp = 5;
+
+    /**
+     * The priority for the move.
+     */
+    @XmlAttribute
+    private int priority = 0;
+
+    public int getPriority() {
+        return priority;
+    }
 
     private Move() {
     }
 
-    public Move(Type type, boolean targetOther, int accuracy, Effect effect, boolean dealDamage, int effectProbability, int effectStrength, StatType effectStat, StatusEffect effectStatus, int power, boolean damageFixed, String name, int pp) {
+    public Move(Type type, boolean targetOther, int accuracy, Effect effect, boolean dealDamage, int effectProbability, int effectStrength, StatType effectStat, StatusEffect effectStatus, int power, boolean damageFixed, String name, int pp, int priority) {
         this.type = type;
         this.targetOther = targetOther;
         this.accuracy = accuracy;
@@ -98,6 +114,7 @@ public class Move {
         this.effectStatus = effectStatus;
         this.power = power;
         this.name = name;
+        this.pp = pp;
     }
 
     /**
@@ -229,4 +246,76 @@ public class Move {
         @XmlEnumValue("heal") HEAL,
     };
 
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        hash = 11 * hash + Objects.hashCode(this.type);
+        hash = 11 * hash + (this.targetOther ? 1 : 0);
+        hash = 11 * hash + this.accuracy;
+        hash = 11 * hash + Objects.hashCode(this.effect);
+        hash = 11 * hash + (this.dealDamage ? 1 : 0);
+        hash = 11 * hash + this.effectProbability;
+        hash = 11 * hash + this.effectStrength;
+        hash = 11 * hash + Objects.hashCode(this.effectStat);
+        hash = 11 * hash + Objects.hashCode(this.effectStatus);
+        hash = 11 * hash + this.power;
+        hash = 11 * hash + Objects.hashCode(this.name);
+        hash = 11 * hash + this.pp;
+        hash = 11 * hash + this.priority;
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Move other = (Move) obj;
+        if (this.targetOther != other.targetOther) {
+            return false;
+        }
+        if (this.accuracy != other.accuracy) {
+            return false;
+        }
+        if (this.dealDamage != other.dealDamage) {
+            return false;
+        }
+        if (this.effectProbability != other.effectProbability) {
+            return false;
+        }
+        if (this.effectStrength != other.effectStrength) {
+            return false;
+        }
+        if (this.power != other.power) {
+            return false;
+        }
+        if (this.pp != other.pp) {
+            return false;
+        }
+        if (!Objects.equals(this.name, other.name)) {
+            return false;
+        }
+        if (this.type != other.type) {
+            return false;
+        }
+        if (this.effect != other.effect) {
+            return false;
+        }
+        if (this.effectStat != other.effectStat) {
+            return false;
+        }
+        if (this.effectStatus != other.effectStatus) {
+            return false;
+        }
+        if (this.priority != other.priority) {
+            return false;
+        }
+        return true;
+    }
 }
